@@ -1,22 +1,31 @@
 #include <Arduino.h>
 #include <WiFi.h>
 #include <AsyncUDP.h>
-#include <HCSR04.h>
+//#include <HCSR04.h>
 //#include <secrets.h>
-//#include <Adafruit_VL53L0X.h>
+#include <Adafruit_VL53L0X.h>
 
-const char * SSID = "***";
-const char * PASSWORD = "***";
+const char * SSID = "ATT9nvMeRy";
+const char * PASSWORD = "t82sxamdz2#5";
 const byte triggerSonarPin = 12;
 const byte echoSonarPin = 13;
 const byte warningLED = 3;
 const byte cautionLED = 27;
 
 AsyncUDP udp;
-UltraSonicDistanceSensor sonar(triggerSonarPin, echoSonarPin);
+//UltraSonicDistanceSensor sonar(triggerSonarPin, echoSonarPin);
+Adafruit_VL53L0X lox = Adafruit_VL53L0X();
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
+
+  Serial.println("Adafruit VL53L0X test");
+  if (!lox.begin()) {
+    Serial.println(F("Failed to boot VL53L0X"));
+    while(1);
+  }
+
+  // power 
   
   pinMode(warningLED, OUTPUT);
   pinMode(cautionLED, OUTPUT);
@@ -36,7 +45,7 @@ void setup() {
             Serial.print("\n");
             if(strcmp((char*)packet.data(),"CAUTION") == 0)
             {
-              Serial.print("CAUTION");
+              //Serial.print("CAUTION");
               digitalWrite(cautionLED, HIGH);
             }
         });
@@ -51,11 +60,15 @@ void loop() {
   //udp.broadcastTo("Anyone here?", 10000);
   // breaking then send message
   // if have caution light and see car braking turn on WARNING light
-  float distance = sonar.measureDistanceCm();
-  if (0 < distance < 30)
+  //int distance = sonar.measureDistanceCm();
+  VL53L0X_RangingMeasurementData_t distance;
+  lox.rangingTest(&distance, false);
+
+  //Serial.print(distance.RangeMilliMeter);
+
+  if (0 < distance.RangeMilliMeter < 800)
   {
-    udp.broadcastTo("CAUTION", 10000);
+    udp.broadcastTo(String(distance.RangeMilliMeter).c_str(), 10000);
   }
-  Serial.println(distance);
 }
 
