@@ -8,6 +8,10 @@
 #include <Adafruit_LSM9DS1.h>
 #include <Adafruit_Sensor.h>
 
+
+// set to false if accelerometer is not present
+#define hasAccel true
+
 const char * SSID = "ATT9nvMeRy";
 const char * PASSWORD = "t82sxamdz2#5";
 const byte triggerSonarPin = 12;
@@ -43,7 +47,6 @@ void setupSensor()
 
 void readSensor(int * data)
 {
-  //int data[3];
 
   sensors_event_t a, m, g, temp;
 
@@ -54,11 +57,6 @@ void readSensor(int * data)
   data[2] = a.acceleration.z;
   
   // Serial.print("Accel X: "); Serial.print(a.acceleration.x); Serial.print(" m/s^2");
-  //data = "Accel X: ";
-  //data += String(x).c_str();
-  //data += "\n"
-
-
   // Serial.print("\tY: "); Serial.print(a.acceleration.y);     Serial.print(" m/s^2 ");
   // Serial.print("\tZ: "); Serial.print(a.acceleration.z);     Serial.println(" m/s^2 ");
 
@@ -80,19 +78,20 @@ void readSensor(int * data)
 void setup() {
   Serial.begin(115200);
 
-  Serial.println("VL53L0X test");
+  Serial.println("VL53L0X Online");
   if (!lox.begin()) {
     Serial.println(F("Failed to boot VL53L0X"));
     while(1);
   }
 
-  Serial.println("LSM9DS1 test");
-  
-  // Try to initialise and warn if we couldn't detect the chip
-  if (!lsm.begin())
+  if (hasAccel == true)
   {
-    Serial.println("Oops ... unable to initialize the LSM9DS1. Check your wiring!");
-    while (1);
+    Serial.println("LSM9DS1 Online");
+    if (!lsm.begin())
+    {
+      Serial.println("Failed to boot LSM9DS1.");
+      while (1);
+    }
   }
 
   setupSensor();
@@ -136,13 +135,15 @@ void loop() {
   VL53L0X_RangingMeasurementData_t distance;
   lox.rangingTest(&distance, false);
 
-  //Serial.print(distance.RangeMilliMeter);
-  int data[3];
-  readSensor(data);
+  if (hasAccel == true)
+  {
+    int data[3];
+    readSensor(data);
+  }
   
-  //Serial.print(data[0]);
 
-  if (0 < distance.RangeMilliMeter < 300)
+  // if distance is less than 300 and acceleration suddenly decreases, turn on the WARNING LIGHT
+  if (0 < (int)distance.RangeMilliMeter and (int)distance.RangeMilliMeter < 300)
   {
     udp.broadcastTo(String(distance.RangeMilliMeter).c_str(), 10000);
   }
