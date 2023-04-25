@@ -203,6 +203,7 @@
  /Users/rohan/.platformio/packages/framework-arduinoespressif32/libraries/SPI/src/SPI.h \
  /Users/rohan/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-spi.h \
  .pio/libdeps/nodemcu-32s/Adafruit\ Unified\ Sensor/Adafruit_Sensor.h \
+ include/secrets.h \
  .pio/libdeps/nodemcu-32s/Adafruit\ LSM9DS1\ Library/Adafruit_LSM9DS1.h \
  .pio/libdeps/nodemcu-32s/Adafruit\ BusIO/Adafruit_I2CDevice.h \
  .pio/libdeps/nodemcu-32s/Adafruit\ LIS3MDL/Adafruit_LIS3MDL.h \

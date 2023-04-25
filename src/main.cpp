@@ -5,6 +5,7 @@
 #include <Adafruit_VL53L0X.h>
 #include <SPI.h>
 #include <Adafruit_Sensor.h>
+#include <secrets.h>
 
 // set to false if accelerometer is not present
 #define hasAccel true
@@ -20,8 +21,11 @@
 #include <HCSR04.h>
 #endif
 
+//moved SSID + PASSWORD to secrets.h
+/* 
 const char * SSID = "ATT9nvMeRy";
 const char * PASSWORD = "t82sxamdz2#5";
+*/
 const byte triggerSonarPin = 12;
 const byte echoSonarPin = 13;
 const byte warningLED = 26;
@@ -29,19 +33,27 @@ const byte cautionLED = 27;
 const byte receivingLED = 2;
 String myID;
 
+//tuple for local array of network cars
 struct communicatingCar {
   unsigned long time;
   String carID;
 };
 
-//we only have 2 devices right now
+//packet contancts
+struct packetInfo {
+  unsigned int carID;
+  unsigned int tofData;
+  unsigned int accelData;
+};
+
+//we only have 2 devices right now so 3 max should be fine
 struct communicatingCar cars[3];
 
 //timers and booleans
-unsigned long currentTime;
+volatile unsigned long currentTime;
 unsigned long sendTimer;
 unsigned long warningTimer;
-unsigned long cautionTimer;
+volatile unsigned long cautionTimer;
 //yes I did a bad by switching to snake_case
 volatile bool warning_led_enabled = false;
 volatile bool caution_led_enabled = false;
@@ -101,8 +113,6 @@ void readSensor(int * data)
 void setup() {
   Serial.begin(115200);
 
-  myID = WiFi.macAddress().substring(15);
-
   //need to call millis once to initialize for some reason
   sendTimer = millis();
 
@@ -123,7 +133,7 @@ void setup() {
 
      setupSensor();
   }
-
+  
   // power 
   
   pinMode(warningLED, OUTPUT);
@@ -138,9 +148,12 @@ void setup() {
         }
     }
 
+  myID = WiFi.macAddress().substring(15);
+
   if(udp.listen(10000)) {
         udp.onPacket([](AsyncUDPPacket packet) {
             // turn on the LED once and leave on
+            // this is the onboard led (next to power)
             digitalWrite(receivingLED, HIGH);
 
             Serial.print("Data: ");
