@@ -41,17 +41,22 @@ void setupSensor()
   //lsm.setupGyro(lsm.LSM9DS1_GYROSCALE_2000DPS);
 }
 
-String readSensor()
+void readSensor(int * data)
 {
-  char * data = "";
+  //int data[3];
 
   sensors_event_t a, m, g, temp;
 
   lsm.getEvent(&a, &m, &g, &temp); 
 
+  data[0] = a.acceleration.x;
+  data[1] = a.acceleration.y;
+  data[2] = a.acceleration.z;
   
   // Serial.print("Accel X: "); Serial.print(a.acceleration.x); Serial.print(" m/s^2");
-  data = "Accel X: ";// + String(a.acceleration.x).c_str()).c_str();
+  //data = "Accel X: ";
+  //data += String(x).c_str();
+  //data += "\n"
 
 
   // Serial.print("\tY: "); Serial.print(a.acceleration.y);     Serial.print(" m/s^2 ");
@@ -68,7 +73,7 @@ String readSensor()
 
  
 
-  return data;
+  return;
 }
 
 
@@ -132,8 +137,12 @@ void loop() {
   lox.rangingTest(&distance, false);
 
   //Serial.print(distance.RangeMilliMeter);
+  int data[3];
+  readSensor(data);
+  
+  //Serial.print(data[0]);
 
-  if (0 < distance.RangeMilliMeter < 800)
+  if (0 < distance.RangeMilliMeter < 300)
   {
     udp.broadcastTo(String(distance.RangeMilliMeter).c_str(), 10000);
   }
