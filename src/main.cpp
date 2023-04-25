@@ -1,22 +1,31 @@
 #include <Arduino.h>
 #include <WiFi.h>
 #include <AsyncUDP.h>
-//#include <HCSR04.h>
 //#include <secrets.h>
 #include <Adafruit_VL53L0X.h>
 #include <SPI.h>
-#include <Adafruit_LSM9DS1.h>
 #include <Adafruit_Sensor.h>
 
 
 // set to false if accelerometer is not present
 #define hasAccel true
 
+#ifdef hasAccel
+#include <Adafruit_LSM9DS1.h>
+#endif
+
+//comment out if ultrasonic is not present
+#define hasUltra true
+
+#ifdef hasUltra
+#include <HCSR04.h>
+#endif
+
 const char * SSID = "ATT9nvMeRy";
 const char * PASSWORD = "t82sxamdz2#5";
 const byte triggerSonarPin = 12;
 const byte echoSonarPin = 13;
-const byte warningLED = 3;
+const byte warningLED = 26;
 const byte cautionLED = 27;
 
 AsyncUDP udp;
@@ -92,9 +101,9 @@ void setup() {
       Serial.println("Failed to boot LSM9DS1.");
       while (1);
     }
-  }
 
-  setupSensor();
+     setupSensor();
+  }
 
   // power 
   
