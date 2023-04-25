@@ -2,11 +2,9 @@
 #include <Wire.h>
 #include <WiFi.h>
 #include <AsyncUDP.h>
-//#include <secrets.h>
 #include <Adafruit_VL53L0X.h>
 #include <SPI.h>
 #include <Adafruit_Sensor.h>
-
 
 // set to false if accelerometer is not present
 #define hasAccel true
@@ -15,7 +13,7 @@
 #include <Adafruit_LSM9DS1.h>
 #endif
 
-//comment out if ultrasonic is not present (are we even using the ultasonic)
+//comment out if ultrasonic is not present (are we even using the ultasonic?)
 #define hasUltra true
 
 #ifdef hasUltra
@@ -29,20 +27,29 @@ const byte echoSonarPin = 13;
 const byte warningLED = 26;
 const byte cautionLED = 27;
 const byte receivingLED = 2;
+String myID;
+
+struct communicatingCar {
+  unsigned long time;
+  String carID;
+};
+
+//we only have 2 devices right now
+struct communicatingCar cars[3];
 
 //timers and booleans
 unsigned long currentTime;
 unsigned long sendTimer;
 unsigned long warningTimer;
 unsigned long cautionTimer;
-//yes I did a bad by using snake_case
-bool warning_led_enabled = false;
-bool caution_led_enabled = false;
+//yes I did a bad by switching to snake_case
+volatile bool warning_led_enabled = false;
+volatile bool caution_led_enabled = false;
 
 AsyncUDP udp;
+
 //UltraSonicDistanceSensor sonar(triggerSonarPin, echoSonarPin);
 Adafruit_VL53L0X lox = Adafruit_VL53L0X();
-
 Adafruit_LSM9DS1 lsm = Adafruit_LSM9DS1();
 
 void setupSensor()
@@ -94,6 +101,8 @@ void readSensor(int * data)
 void setup() {
   Serial.begin(115200);
 
+  myID = WiFi.macAddress().substring(15);
+
   //need to call millis once to initialize for some reason
   sendTimer = millis();
 
@@ -139,7 +148,7 @@ void setup() {
             Serial.print("\n");
             
             //status msg logic
-            //ADD HERE (collect car ID in an array)
+            //ADD HERE (collect car ID and time received in an array)
 
             //CAUTION msg
             if(strcmp((char*)packet.data(),"CAUTION") == 0)
@@ -150,16 +159,6 @@ void setup() {
               caution_led_enabled = true;
             }
 
-            //logic to turn off caution LED
-            if(caution_led_enabled)
-            {
-              currentTime = millis();
-              if (currentTime > (cautionTimer + ((unsigned long)5000)))
-              {
-                digitalWrite(cautionLED,LOW);
-                caution_led_enabled = false;
-              }
-            }
         });
     }
     
@@ -167,15 +166,28 @@ void setup() {
 
 
 void loop() {
+
+  //IF millis() works we can remove this delay
   delay(200);
+
   currentTime = millis();
   //Send broadcast on port 10000
   //udp.broadcastTo("Anyone here?", 10000);
-  // breaking then send message
-  // if have caution light and see car braking turn on WARNING light
+
   //int distance = sonar.measureDistanceCm();
   VL53L0X_RangingMeasurementData_t distance;
   lox.rangingTest(&distance, false);
+
+  //logic to turn off caution LED
+  if(caution_led_enabled)
+  {
+    currentTime = millis();
+    if (currentTime > (cautionTimer + ((unsigned long)5000)))
+    {
+      digitalWrite(cautionLED,LOW);
+      caution_led_enabled = false;
+    }
+  }
 
   if (hasAccel == true)
   {
