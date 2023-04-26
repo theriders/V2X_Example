@@ -304,16 +304,23 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
+
+LaTeX Warning: Citation `knekr' on page 1 undefined on input line 122.
+
 <pics/lth_mand.png, id=1, 671.50874pt x 912.40875pt>
 File: pics/lth_mand.png Graphic file (type png)
 <use pics/lth_mand.png>
 Package pdftex.def Info: pics/lth_mand.png  used on input line 128.
 (pdftex.def)             Requested size: 252.0pt x 342.40305pt.
- [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf-dist/fo
-nts/enc/dvips/base/8r.enc}
+
+LaTeX Warning: Citation `1481759' on page 1 undefined on input line 133.
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf-dist/fon
+ts/enc/dvips/base/8r.enc}
 
 
-] [2 <./pics/lth_mand.png>] (./eel5632_report_Autogators.bbl
+] [2 <./pics/lth_mand.png>]
+(./eel5632_report_Autogators.bbl
 Underfull \hbox (badness 1360) in paragraph at lines 26--30
 \OT1/ptm/m/n/8 ap-plied in-for-ma-tion v2x data,'' Mar 2023. [On-line].
  []
@@ -355,20 +362,23 @@ Before submitting the final camera ready copy, remember to:
 [3
 
 
-] (./eel5632_report_Autogators.aux) ) 
+] (./eel5632_report_Autogators.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 4170 strings out of 476025
- 64912 string characters out of 5796532
+ 4169 strings out of 476025
+ 64903 string characters out of 5796532
  1865388 words of memory out of 5000000
- 24604 multiletter control sequences out of 15000+600000
- 542790 words of font info for 81 fonts, out of 8000000 for 9000
+ 24603 multiletter control sequences out of 15000+600000
+ 542761 words of font info for 81 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,8n,62p,244b,266s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texmf-dist/fonts/type1/urw/tim
-es/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/sh
-are/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/ty
-pe1/urw/times/utmri8a.pfb>
-Output written on eel5632_report_Autogators.pdf (3 pages, 141946 bytes).
+</usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dis
+t/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-dist/fonts/type1/urw/time
+s/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on eel5632_report_Autogators.pdf (3 pages, 140705 bytes).
 PDF statistics:
  36 PDF objects out of 1000 (max. 8388607)
  21 compressed objects within 1 object stream
