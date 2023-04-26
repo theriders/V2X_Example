@@ -12,6 +12,15 @@
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
 
+% From: https://tex.stackexchange.com/a/458208
+\makeatletter
+\newcommand{\linebreakand}{%
+  \end{@IEEEauthorhalign}
+  \hfill\mbox{}\par
+  \mbox{}\hfill\begin{@IEEEauthorhalign}
+}
+\makeatother
+
 \title{Vehicle-to-Vehicle (V2V) Communication Implementation\\
 \thanks{University of Florida}
 }
@@ -43,7 +52,7 @@ todo@ufl.edu
 Gainesville, Florida \\
 rhernandezlopez1@ufl.edu
     }
-    \and
+    \linebreakand
     \IEEEauthorblockN{Rohan Malik}
     \IEEEauthorblockA{
         \textit{Group: Autogators} \\
@@ -59,10 +68,11 @@ todo@ufl.edu
 \begin{abstract}
 Vehicle-to-vehicle (V2V) allows communication between vehicles, promoting driver
 awareness and potentially reducing the number of collisions. Existing V2V
-implementations (cellular vehicle-to-everything, C-V2X) rely on cloud data, whereas the
-implementation shown in this paper does true V2V between vehicles. A mockup
-utilizing two ESP32 with a time-of-flight (ToF) sensor and accelerometer
-communicate using UDP to illustrate V2V.
+implementations (cellular vehicle-to-everything, C-V2X) rely on cloud data,
+whereas the implementation shown in this paper does true V2V between vehicles. A
+mockup utilizing two ESP32 with a time-of-flight (ToF) sensor and accelerometer
+communicate using UDP to deliver a proof-of-concept for V2V that can be used as
+a base for V2V.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -73,7 +83,8 @@ V2V, vehicles, driver, awareness, C, ESP32, UDP
 As society moves towards utilizing more autonomous driving systems, vehicles can
 act as a network to promote efficient and safe driving. This network is referred
 to as vehicle-to-vehicle (V2V). Automotive vehicles should communicate with each
-other through V2V to increase driver awareness and reduce the number of collisions.
+other through V2V to increase driver awareness and reduce the number of
+collisions.
 
 The current state of V2V is nonexistent. The closest thing on the market to V2V
 is the 2023 Safety Cloud for Chrysler Vehicles, which is implemented through a
@@ -93,14 +104,16 @@ specifically for V2V and operate on an FCC-designated band for V2V.
 
 V2V will be illustrated using an ESP32 paired with time-of-flight (ToF) sensor
 and accelerometer. Each ESP32 represents a simplified car, and communicate with
-each other using UDP. UDP was chosen as the protocol to allow ad hoc car networks
-to be formed as well as allow dropped packets once a car leaves the network.
+each other using UDP. UDP was chosen as the protocol to allow ad hoc car
+networks to be formed as well as allow dropped packets once a car leaves the
+network.
 
 \section{V2V implementation}
 This section covers our V2V implementation, the features and the mockup.
 
 \subsection{Features}
 
+\subsection{Hardware Mockup}
 
 \section{Results}
 
