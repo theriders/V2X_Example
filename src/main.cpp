@@ -8,24 +8,19 @@
 #include <secrets.h>
 
 // set to false if accelerometer is not present
-#define hasAccel true
+#define hasAccel false
 
 #ifdef hasAccel
 #include <Adafruit_LSM9DS1.h>
 #endif
 
 //comment out if ultrasonic is not present (are we even using the ultasonic?)
-#define hasUltra true
+//#define hasUltra true
 
 #ifdef hasUltra
 #include <HCSR04.h>
 #endif
 
-//moved SSID + PASSWORD to secrets.h
-/* 
-const char * SSID = "ATT9nvMeRy";
-const char * PASSWORD = "t82sxamdz2#5";
-*/
 const byte triggerSonarPin = 12;
 const byte echoSonarPin = 13;
 const byte warningLED = 26;
@@ -44,6 +39,7 @@ struct packetInfo {
   unsigned int carID;
   unsigned int tofData;
   unsigned int accelData;
+  unsigned int statusMessage; 
 };
 
 //we only have 2 devices right now so 3 max should be fine
@@ -112,6 +108,8 @@ void readSensor(int * data)
 
 void setup() {
   Serial.begin(115200);
+
+  struct packetInfo* temp = malloc(sizeof(struct packetInfo));
 
   //need to call millis once to initialize for some reason
   sendTimer = millis();
