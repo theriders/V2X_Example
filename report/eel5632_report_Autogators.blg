@@ -8,54 +8,49 @@ Reallocated singl_function (elt_size=8) to 100 items from 50.
 Reallocated wiz_functions (elt_size=8) to 6000 items from 3000.
 Reallocated singl_function (elt_size=8) to 100 items from 50.
 Database file #1: bibs.bib
-Warning--I didn't find a database entry for "cv2x"
-Warning--I didn't find a database entry for "v2g"
-Warning--I didn't find a database entry for "fcc_band"
-Warning--I didn't find a database entry for "fcc_band_gone"
 -- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 
 Done.
-You've used 2 entries,
+You've used 6 entries,
             4087 wiz_defined-function locations,
-            840 strings with 7715 characters,
-and the built_in function-call counts, 2033 in all, are:
-= -- 161
-> -- 43
+            861 strings with 8522 characters,
+and the built_in function-call counts, 3357 in all, are:
+= -- 257
+> -- 53
 < -- 23
-+ -- 28
-- -- 6
-* -- 111
-:= -- 302
-add.period$ -- 4
-call.type$ -- 2
-change.case$ -- 2
++ -- 34
+- -- 8
+* -- 160
+:= -- 539
+add.period$ -- 12
+call.type$ -- 6
+change.case$ -- 6
 chr.to.int$ -- 54
-cite$ -- 2
-duplicate$ -- 131
-empty$ -- 137
-format.name$ -- 7
-if$ -- 460
+cite$ -- 6
+duplicate$ -- 249
+empty$ -- 279
+format.name$ -- 9
+if$ -- 750
 int.to.chr$ -- 0
-int.to.str$ -- 2
-missing$ -- 19
-newline$ -- 29
-num.names$ -- 2
-pop$ -- 35
+int.to.str$ -- 6
+missing$ -- 45
+newline$ -- 49
+num.names$ -- 4
+pop$ -- 122
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 151
+skip$ -- 248
 stack$ -- 0
-substring$ -- 128
-swap$ -- 125
+substring$ -- 132
+swap$ -- 190
 text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 2
+type$ -- 6
 warning$ -- 0
-while$ -- 8
-width$ -- 3
-write$ -- 43
-(There were 4 warnings)
+while$ -- 10
+width$ -- 7
+write$ -- 80

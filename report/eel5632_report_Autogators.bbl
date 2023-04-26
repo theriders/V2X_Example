@@ -21,6 +21,33 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
+\bibitem{stone_2023}
+\BIBentryALTinterwordspacing
+T.~Stone, ``Haas safety cloud to be enhanced with applied information v2x
+  data,'' Mar 2023. [Online]. Available:
+  \url{https://www.traffictechnologytoday.com/news/connected-vehicles-infrastructure/haas-safety-cloud-to-be-enhanced-with-applied-information-v2x-data.html}
+\BIBentrySTDinterwordspacing
+
+\bibitem{haas}
+\BIBentryALTinterwordspacing
+``Safety cloud, cv2x technology that makes roads safer \&amp; smarter.''
+  [Online]. Available: \url{https://www.haasalert.com/solutions}
+\BIBentrySTDinterwordspacing
+
+\bibitem{media.stellantis_2020}
+\BIBentryALTinterwordspacing
+``The vehicle-to-grid pilot project has been inaugurated at mirafiori,'' Sep
+  2020. [Online]. Available:
+  \url{https://www.media.stellantis.com/em-en/e-mobility/press/the-vehicle-to-grid-pilot-project-has-been-inaugurated-at-mirafiori}
+\BIBentrySTDinterwordspacing
+
+\bibitem{hawkins_2022}
+\BIBentryALTinterwordspacing
+A.~J. Hawkins, ``The auto industry lost its spectrum fight with the fcc because
+  v2v was always a fantasy,'' Aug 2022. [Online]. Available:
+  \url{https://www.theverge.com/2022/8/12/23303191/car-v2v-fcc-spectrum-wifi-court-ruling}
+\BIBentrySTDinterwordspacing
+
 \bibitem{knekr}
 M.~Krátká, N.~Neykova, U.~Egor, A.~Kromka, and B.~Rezek, ``Sensitivity of
   encapsulated diamond-protein transistor renewed by low temperature hydrogen

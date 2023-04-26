@@ -88,15 +88,16 @@ collisions.
 
 The current state of V2V is nonexistent. The closest thing on the market to V2V
 is the 2023 Safety Cloud for Chrysler Vehicles, which is implemented through a
-cellular network to create C-V2X (cellular vehicle-to-everything) \cite{cv2x}.
-While this is fairly close to V2V, passing through a cloud does not exhibit true
-V2V. Ideally the cars would communicate directly to each other, which is what is
-covered by the implementation discussed in this paper. Additionally, Stellantis
-announced vehicle-to-grid (V2G) testing in 2019 \cite{v2g}.
+cellular network to create C-V2X (cellular vehicle-to-everything)
+\cite{stone_2023, haas}.  While this is fairly close to V2V, passing through a
+cloud does not exhibit true V2V. Ideally the cars would communicate directly to
+each other, which is what is covered by the implementation discussed in this
+paper. Additionally, Stellantis announced vehicle-to-grid (V2G) testing in 2019
+\cite{media.stellantis_2020}.
 
 In 1999, the FCC designated a 75 MHz spectrum in the 5.9 GHz band for dedicated
-short-range communications (DSRC) \cite{fcc_band}. Unfortunately, this band was
-reallocated in 2020 for unlicensed WiFi \cite{fcc_band_gone} use due to the
+short-range communications (DSRC) \cite{hawkins_2022}. Unfortunately, this band was
+reallocated in 2020 for unlicensed WiFi \cite{hawkins_2022} use due to the
 failure of automobile makers to release V2X production cars. Due to the removal
 of this band, we chose UDP over WiFi as an acceptable simplified protocol for
 V2V. Ideally, UDP would be replaced with another protocol built on top of UDP --
