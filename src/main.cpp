@@ -10,6 +10,9 @@
 // set to false if accelerometer is not present
 #define hasAccel false
 
+// set to false if not hosting AP
+#define wifiAP false
+
 #ifdef hasAccel
 #include <Adafruit_LSM9DS1.h>
 #endif
@@ -138,17 +141,38 @@ void setup() {
   
   // power 
   
+  if (wifiAP == true)
+  {
+    WiFi.mode(WIFI_AP);
+    WiFi.softAP(SSID,PASSWORD);
+
+    Serial.println("Wifi AP active");
+  }
+  else
+  {
+    WiFi.begin(SSID, PASSWORD);
+    if (WiFi.waitForConnectResult() != WL_CONNECTED) {
+        Serial.println("WiFi Failed");
+        while(1) {
+            delay(5000);
+        }
+    }
+  }
+
+  Serial.println("Wifi Okay");
+
+
   pinMode(warningLED, OUTPUT);
   pinMode(cautionLED, OUTPUT);
   pinMode(receivingLED, OUTPUT);
 
-  WiFi.begin(SSID, PASSWORD);
-    if (WiFi.waitForConnectResult() != WL_CONNECTED) {
-        Serial.println("WiFi Failed");
-        while(1) {
-            delay(1000);
-        }
-    }
+  // WiFi.begin(SSID, PASSWORD);
+  //   if (WiFi.waitForConnectResult() != WL_CONNECTED) {
+  //       Serial.println("WiFi Failed");
+  //       while(1) {
+  //           delay(1000);
+  //       }
+  //   }
 
   //Serial.println("Wifi Okay");
 
@@ -199,12 +223,12 @@ void setup() {
               caution_led_enabled = true;
             }
 
-            if (recvTempPacket.statusMessage == 2)
-            {
-              digitalWrite(warningLED, HIGH);
-              warningTimer = millis();
-              warning_led_enabled = true;
-            }
+            // if (recvTempPacket.statusMessage == 2)
+            // {
+            //   digitalWrite(warningLED, HIGH);
+            //   warningTimer = millis();
+            //   warning_led_enabled = true;
+            // }
             
             //status msg logic
             //ADD HERE (collect car ID and time received in an array)
@@ -231,7 +255,7 @@ void loop() {
   }
   
   //IF millis() works we can remove this delay
-  delay(200);
+  //delay(200);
   
   //default messageType to status
   tempPacket->statusMessage = 0;
@@ -248,6 +272,14 @@ void loop() {
   if(caution_led_enabled)
   {
     currentTime = millis();
+
+    if (distance.RangeMilliMeter < 50)
+    {
+      digitalWrite(warningLED, HIGH);
+      warningTimer = millis();
+      warning_led_enabled = true;
+    }
+
     if (currentTime > (cautionTimer + ((unsigned long)5000)))
     {
       digitalWrite(cautionLED,LOW);
@@ -280,19 +312,15 @@ void loop() {
   
   tempPacket->tofData = (int) distance.RangeMilliMeter;
   
-  if (tempPacket->accelData < 0 && tempPacket->tofData < 100 && tempPacket->tofData >= 50)
+  if (tempPacket->accelData < 0 && tempPacket->tofData < 100)
   {
     tempPacket->statusMessage = 1;
-  }
-  else if (tempPacket->accelData < 0 && tempPacket->tofData < 50)
-  {
-    tempPacket->statusMessage = 2;
   }
 
   //status msg (send all the data)
   if(currentTime > (sendTimer + ((unsigned long) 10000)))
   {
-    Serial.println("I am sending data");
+    //Serial.println("I am sending data");
     // convert struct into buffer to send over UDP
     //uint8_t buffer[sizeof(struct packetInfo)];
     //memcpy(buffer, tempPacket, sizeof(struct packetInfo));
