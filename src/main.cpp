@@ -36,7 +36,7 @@ struct communicatingCar {
 
 //packet contancts
 struct packetInfo {
-  unsigned int carID;
+  String carID;
   unsigned int tofData;
   unsigned int accelData;
   unsigned int statusMessage; 
@@ -44,6 +44,7 @@ struct packetInfo {
 
 //we only have 2 devices right now so 3 max should be fine
 struct communicatingCar cars[3];
+struct packetInfo* tempPacket;
 
 //timers and booleans
 volatile unsigned long currentTime;
@@ -109,8 +110,6 @@ void readSensor(int * data)
 void setup() {
   Serial.begin(115200);
 
-  struct packetInfo* temp = malloc(sizeof(struct packetInfo));
-
   //need to call millis once to initialize for some reason
   sendTimer = millis();
 
@@ -147,6 +146,7 @@ void setup() {
     }
 
   myID = WiFi.macAddress().substring(15);
+  tempPacket->carID = myID;
 
   if(udp.listen(10000)) {
         udp.onPacket([](AsyncUDPPacket packet) {
@@ -180,7 +180,10 @@ void loop() {
 
   //IF millis() works we can remove this delay
   delay(200);
-
+  
+  //default messageType to status
+  tempPacket->statusMessage = 0;
+  
   currentTime = millis();
   //Send broadcast on port 10000
   //udp.broadcastTo("Anyone here?", 10000);
@@ -204,14 +207,30 @@ void loop() {
   {
     int data[3];
     readSensor(data);
+    tempPacket->accelData = data[1];
   }
   
+  tempPacket->tofData = (int) distance.RangeMilliMeter;
+  
+
+    
+  if (tempPacket->accelData < 0 && tempPacket->tofData < 50)
+  {
+    tempPacket->statusMessage = 1;
+  }
+
+
   //status msg (send all the data)
   if(currentTime > (sendTimer + ((unsigned long) 3000)))
   {
-    udp.broadcastTo("Status Msg",10000);
+    // convert struct into buffer to send over UDP
+    char buffer[sizeof(struct packetInfo)];
+    memcpy(buffer, &tempPacket, sizeof(tempPacket));
+    udp.broadcastTo(buffer,10000);
+
     sendTimer = millis();
   }
+
 
   //send caution if accel changes drastically (or negative acceleration) (maybe don't allow more than a couple messages per event (w/ timers+booleans))
 
