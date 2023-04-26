@@ -39,7 +39,7 @@ struct communicatingCar {
 struct packetInfo {
   String carID;
   unsigned int tofData;
-  int accelData;
+  unsigned int accelData;
   int statusMessage; // 0 normal, 1 caution
 };
 
@@ -157,11 +157,9 @@ void setup() {
 
   Serial.println("Wifi2 Okay");
 
-
   tempPacket->carID = myID;
 
   Serial.println("carID Okay");
-
 
   if(udp.listen(10000)) {
         udp.onPacket([](AsyncUDPPacket packet) {
@@ -189,7 +187,7 @@ void setup() {
             Serial.print(" : ");
             Serial.print(String(recvTempPacket.tofData));
             Serial.print(" : ");
-            Serial.println(recvTempPacket.accelData,16);
+            Serial.print(String((signed) recvTempPacket.accelData));
             Serial.print("\n");
 
             /*
@@ -256,13 +254,11 @@ void loop() {
     readSensor(data);
     tempPacket->accelData = data[1];
     Serial.print("Accel Sending: ");
-    Serial.println(tempPacket->accelData, 16);
+    Serial.print(String((signed)tempPacket->accelData));
   }
   
   tempPacket->tofData = (int) distance.RangeMilliMeter;
   
-
-    
   if (tempPacket->accelData < 0 && tempPacket->tofData < 50)
   {
     tempPacket->statusMessage = 1;
