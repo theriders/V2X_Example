@@ -114,21 +114,30 @@ network.
 This section covers our V2V implementation, the features and the mockup.
 
 \subsection{Features}
+The two vehicles are represented by two ESP32s. They each have a ToF sensor and
+an accelerometer. The ToF sensor is used to identify whether there is another
+``vehicle'' in front of the ESP32 and the accelerometer is used to know whether
+the other ``vehicle'' is moving. On a real vehicle, the CAN bus can be used to
+monitor and send each vehicle's velocity -- and other information as needed --
+in the UDP packet. The current UDP packet has an ID for the vehicle, the ToF
+distance, and the accelerometer measurement. On the other vehicle, this
+information is used to alert the driver via some LEDs.
 
-\subsection{Hardware Mockup}
+\subsection{Hardware}
+The mockup can be found on Fig.~\ref{mockup}.
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=\linewidth]{pics/lth_mand.png}}
+\caption{The mockup used to test V2V, ESP32s are ``vehicles''.}
+\label{mockup}
+\end{figure}
+
+The driver has two LEDs available in this implementation: a yellow communication
+LED, and a red ``caution'' LED. The yellow LED turns on when there is a nearby
+vehicle exchanging UDP packets with the driver's vehicle. The red LED turns on
+in cases where the driver should be more cautious, like when TODO.
 
 \section{Results}
-
-%\paragraph{LTH Mand} After low-temperature hydrogenation \cite{knekr}, the resist layer will
-%be etched and expose the SiARC underneath. This results in the stack from
-%Fig.~\ref{lth_mand}.
-%TODO: Explain what we use this for.
-%
-%\begin{figure}[htbp]
-%\centerline{\includegraphics[width=\linewidth]{pics/lth_mand.png}}
-%\caption{The silicon stack after LTH Mand.}
-%\label{lth_mand}
-%\end{figure}
 
 \section{Security}
 Our implementation of V2V has room to improve. A V2V implementation usable on
