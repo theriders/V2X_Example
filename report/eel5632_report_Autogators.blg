@@ -11,6 +11,7 @@ Database file #1: bibs.bib
 Warning--I didn't find a database entry for "cv2x"
 Warning--I didn't find a database entry for "v2g"
 Warning--I didn't find a database entry for "fcc_band"
+Warning--I didn't find a database entry for "fcc_band_gone"
 -- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
@@ -18,7 +19,7 @@ Warning--I didn't find a database entry for "fcc_band"
 Done.
 You've used 2 entries,
             4087 wiz_defined-function locations,
-            839 strings with 7702 characters,
+            840 strings with 7715 characters,
 and the built_in function-call counts, 2033 in all, are:
 = -- 161
 > -- 43
@@ -57,4 +58,4 @@ warning$ -- 0
 while$ -- 8
 width$ -- 3
 write$ -- 43
-(There were 3 warnings)
+(There were 4 warnings)

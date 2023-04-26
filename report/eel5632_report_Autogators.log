@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.4.12)  26 APR 2023 14:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.4.12)  26 APR 2023 14:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -313,10 +313,13 @@ LaTeX Warning: Citation `v2g' on page 1 undefined on input line 95.
 
 LaTeX Warning: Citation `fcc_band' on page 1 undefined on input line 98.
 
+
+LaTeX Warning: Citation `fcc_band_gone' on page 1 undefined on input line 99.
+
 <pics/lth_mand.png, id=1, 671.50874pt x 912.40875pt>
 File: pics/lth_mand.png Graphic file (type png)
 <use pics/lth_mand.png>
-Package pdftex.def Info: pics/lth_mand.png  used on input line 126.
+Package pdftex.def Info: pics/lth_mand.png  used on input line 127.
 (pdftex.def)             Requested size: 252.0pt x 342.40305pt.
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf-dist/fon
 ts/enc/dvips/base/8r.enc}
@@ -344,17 +347,17 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 4170 strings out of 476025
- 64884 string characters out of 5796532
+ 4171 strings out of 476025
+ 64899 string characters out of 5796532
  1866388 words of memory out of 5000000
- 24603 multiletter control sequences out of 15000+600000
+ 24604 multiletter control sequences out of 15000+600000
  543897 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,8n,62p,244b,266s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dis
 t/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-dist/fonts/type1/urw/time
 s/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on eel5632_report_Autogators.pdf (3 pages, 140629 bytes).
+Output written on eel5632_report_Autogators.pdf (3 pages, 140670 bytes).
 PDF statistics:
  36 PDF objects out of 1000 (max. 8388607)
  21 compressed objects within 1 object stream

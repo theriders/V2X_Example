@@ -32,7 +32,7 @@
         \textit{Electrical and Computer Engineering} \\
         \textit{University of Florida} \\
 Gainesville, Florida \\
-todo@ufl.edu
+gunnarfandrich@ufl.edu
     }
     \and
     \IEEEauthorblockN{Mark Lai}
@@ -41,7 +41,7 @@ todo@ufl.edu
         \textit{Electrical and Computer Engineering} \\
         \textit{University of Florida} \\
 Gainesville, Florida \\
-todo@ufl.edu
+marklai@ufl.edu
     }
     \and
     \IEEEauthorblockN{Rafael Hernandez-Lopez}
@@ -59,7 +59,7 @@ rhernandezlopez1@ufl.edu
         \textit{Electrical and Computer Engineering} \\
         \textit{University of Florida} \\
 Gainesville, Florida \\
-todo@ufl.edu
+rmalik@ufl.edu
     }
 }
 
@@ -96,11 +96,12 @@ announced vehicle-to-grid (V2G) testing in 2019 \cite{v2g}.
 
 In 1999, the FCC designated a 75 MHz spectrum in the 5.9 GHz band for dedicated
 short-range communications (DSRC) \cite{fcc_band}. Unfortunately, this band was
-reallocated in 2020 for unlicensed WiFi use due to the failure of automobile
-makers to release V2X production cars. Due to the removal of this band, we chose
-UDP over WiFi as an acceptable simplified protocol for V2V. Ideally, UDP would
-be replaced with another protocol built on top of UDP, or similar protocol,
-specifically for V2V and operate on an FCC-designated band for V2V.
+reallocated in 2020 for unlicensed WiFi \cite{fcc_band_gone} use due to the
+failure of automobile makers to release V2X production cars. Due to the removal
+of this band, we chose UDP over WiFi as an acceptable simplified protocol for
+V2V. Ideally, UDP would be replaced with another protocol built on top of UDP,
+or similar protocol, specifically for V2V and operate on an FCC-designated band
+for V2V.
 
 V2V will be illustrated using an ESP32 paired with time-of-flight (ToF) sensor
 and accelerometer. Each ESP32 represents a simplified car, and communicate with
