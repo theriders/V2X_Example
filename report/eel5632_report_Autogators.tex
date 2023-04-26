@@ -118,9 +118,10 @@ The two vehicles are represented by two ESP32s. They each have a ToF sensor and
 an accelerometer. The ToF sensor is used to identify whether there is another
 ``vehicle'' in front of the ESP32 and the accelerometer is used to know whether
 the other ``vehicle'' is moving. On a real vehicle, the CAN bus can be used to
-monitor and send each vehicle's velocity -- and other information as needed --
-in the UDP packet. The current UDP packet has an ID for the vehicle, the ToF
-distance, and the accelerometer measurement. On the other vehicle, this
+monitor and send each vehicle's velocity -- and other information as needed,
+such as GPS for locating where the incoming UDP packet is coming from -- in the
+UDP packet. The current UDP packet we are sending has an ID for the vehicle, the
+ToF distance, and the accelerometer measurement. On the other vehicle, this
 information is used to alert the driver via some LEDs.
 
 \subsection{Hardware}
