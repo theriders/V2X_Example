@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.4.12)  26 APR 2023 16:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.4.12)  26 APR 2023 17:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -304,11 +304,11 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-<pics/lth_mand.png, id=1, 671.50874pt x 912.40875pt>
-File: pics/lth_mand.png Graphic file (type png)
-<use pics/lth_mand.png>
-Package pdftex.def Info: pics/lth_mand.png  used on input line 130.
-(pdftex.def)             Requested size: 252.0pt x 342.40305pt.
+<pics/two_boards.png, id=1, 3550.26375pt x 1933.2225pt>
+File: pics/two_boards.png Graphic file (type png)
+<use pics/two_boards.png>
+Package pdftex.def Info: pics/two_boards.png  used on input line 130.
+(pdftex.def)             Requested size: 252.0pt x 137.19781pt.
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf-dist/fo
 nts/enc/dvips/base/8r.enc}
 
@@ -352,23 +352,23 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[2 <./pics/lth_mand.png>] (./eel5632_report_Autogators.aux) ) 
+[2 <./pics/two_boards.png>] (./eel5632_report_Autogators.aux) ) 
 Here is how much of TeX's memory you used:
  4166 strings out of 476025
- 64879 string characters out of 5796532
+ 64893 string characters out of 5796532
  1865388 words of memory out of 5000000
  24601 multiletter control sequences out of 15000+600000
  541654 words of font info for 80 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,8n,62p,244b,266s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texmf-
-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/ti
-mes/utmbi8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/s
-hare/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on eel5632_report_Autogators.pdf (2 pages, 139534 bytes).
+</usr/share/texm
+f-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/
+times/utmbi8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr
+/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on eel5632_report_Autogators.pdf (2 pages, 6242864 bytes).
 PDF statistics:
- 33 PDF objects out of 1000 (max. 8388607)
- 19 compressed objects within 1 object stream
+ 35 PDF objects out of 1000 (max. 8388607)
+ 20 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
