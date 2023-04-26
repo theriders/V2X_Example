@@ -76,11 +76,20 @@ to as vehicle-to-vehicle (V2V). Automotive vehicles should communicate with each
 other through V2V to increase driver awareness and reduce the number of collisions.
 
 The current state of V2V is nonexistent. The closest thing on the market to V2V
-is the Safety Cloud for Chrysler Vehicles, which is implemented through a
+is the 2023 Safety Cloud for Chrysler Vehicles, which is implemented through a
 cellular network to create C-V2X (cellular vehicle-to-everything) \cite{cv2x}.
 While this is fairly close to V2V, passing through a cloud does not exhibit true
 V2V. Ideally the cars would communicate directly to each other, which is what is
-covered by the implementation discussed in this paper.
+covered by the implementation discussed in this paper. Additionally, Stellantis
+announced vehicle-to-grid (V2G) testing in 2019 \cite{v2g}.
+
+In 1999, the FCC designated a 75 MHz spectrum in the 5.9 GHz band for dedicated
+short-range communications (DSRC) \cite{fcc_band}. Unfortunately, this band was
+reallocated in 2020 for unlicensed WiFi use due to the failure of automobile
+makers to release V2X production cars. Due to the removal of this band, we chose
+UDP over WiFi as an acceptable simplified protocol for V2V. Ideally, UDP would
+be replaced with another protocol built on top of UDP, or similar protocol,
+specifically for V2V and operate on an FCC-designated band for V2V.
 
 V2V will be illustrated using an ESP32 paired with time-of-flight (ToF) sensor
 and accelerometer. Each ESP32 represents a simplified car, and communicate with
@@ -108,8 +117,38 @@ the SiARC layer, exposing the ODL underneath.
 \section{Middle-of-Line}
 Explanation on MOL.
 
-\section{Extract Devices}
-Explanation on extracting devices.
+\section{Security}
+Our implementation of V2V has room to improve. A V2V implementation usable on
+the market would address a few security concerns.
+
+\subsection{Packet Security}
+As our UDP packets are being broadcasted to everyone in the nearby vecinity, an
+attacker only needs to be located near the network to be considered a ``car''.
+This means that anyone could send fake messages or tamper with existing packets.
+This leaves room for improvement in terms of admitting ``cars'' on the network,
+and properly identifying nodes on the network as ``car'', ``adversary'', or
+``miscellaneuos'' nodes.
+
+Attackers on the network could potentially leverage this limitation to inhibit
+the flow of traffic by broadcasting that there is some blockade ahead (ToF
+sensor data shows car ahead, accelerometer data shows there is no/little
+movement). Attackers could also target individual vehicles with a similar idea.
+They could send false packets to make the victim vehicle think it has to brake
+suddenly, potentially crashing with vehicles behind them or causing them to
+brake too fast. If the victim is carrying a heavy load, such as a large trailer,
+braking too fast can compromise the stability of their vehicle and potentially
+swerve out of control or unlatch their trailer.
+
+\subsection{Network Security}
+A member of the ad hoc network may be either callibrated to send too many
+packets or is an attacker. In a case where the packet traffic is too heavy, a
+denial of service attack (DoS) may occur. This should be addressed as well
+before V2V is accepted by car manufacturers.
+
+As the network is completely open to new ``cars'', attackers may be able to
+probe the network for more vulnerabilities than those discussed. For example,
+perhaps some UDP misconfiguration could be leveraged to forward UDP packet
+contents to a CAN bus, or similar idea.
 
 \section{Conclusion}
 Lots of things happen in the 14 nm process flow.
