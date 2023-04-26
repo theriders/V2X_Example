@@ -8,7 +8,7 @@
 #include <secrets.h>
 
 // set to false if accelerometer is not present
-#define hasAccel false
+#define hasAccel true
 
 #ifdef hasAccel
 #include <Adafruit_LSM9DS1.h>
@@ -190,15 +190,15 @@ void setup() {
             Serial.print(String((signed) recvTempPacket.accelData));
             Serial.print("\n");
 
-            /*
+            
             // if CAUTION is received
-            if (rcv->statusMessage == 1)
+            if (recvTempPacket.statusMessage == 1)
             {
               digitalWrite(cautionLED, HIGH);
               cautionTimer = millis();
               caution_led_enabled = true;
             }
-            */
+            
             //status msg logic
             //ADD HERE (collect car ID and time received in an array)
 
