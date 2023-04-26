@@ -99,13 +99,13 @@ short-range communications (DSRC) \cite{fcc_band}. Unfortunately, this band was
 reallocated in 2020 for unlicensed WiFi \cite{fcc_band_gone} use due to the
 failure of automobile makers to release V2X production cars. Due to the removal
 of this band, we chose UDP over WiFi as an acceptable simplified protocol for
-V2V. Ideally, UDP would be replaced with another protocol built on top of UDP,
-or similar protocol, specifically for V2V and operate on an FCC-designated band
-for V2V.
+V2V. Ideally, UDP would be replaced with another protocol built on top of UDP --
+or similar protocol -- specifically for V2V and operate on an FCC-designated
+band for V2V.
 
 V2V will be illustrated using an ESP32 paired with time-of-flight (ToF) sensor
 and accelerometer. Each ESP32 represents a simplified car, and communicate with
-each other using UDP. UDP was chosen as the protocol to allow ad hoc car
+each other using UDP. UDP was chosen as the protocol to allow ad-hoc car
 networks to be formed as well as allow dropped packets once a car leaves the
 network.
 
@@ -155,7 +155,7 @@ braking too fast can compromise the stability of their vehicle and potentially
 swerve out of control or unlatch their trailer.
 
 \subsection{Network Security}
-A member of the ad hoc network may be either callibrated to send too many
+A member of the ad-hoc network may be either callibrated to send too many
 packets or is an attacker. In a case where the packet traffic is too heavy, a
 denial of service attack (DoS) may occur. This should be addressed as well
 before V2V is accepted by car manufacturers.
@@ -166,7 +166,13 @@ perhaps some UDP misconfiguration could be leveraged to forward UDP packet
 contents to a CAN bus, or similar idea.
 
 \section{Conclusion}
-Lots of things happen in the 14 nm process flow.
+We successfully implement a V2V network using two ESP32 with ToF and
+accelerometer as a proof-of-concept/base on which car manufacturers may be able
+to improve and develop on.
+
+While there are sections to improve, like the protocol and protocol security
+that protocol, we were able to get two ``vehicles'' communicating with each
+other and alerting the driver based on these communications.
 
 \clearpage
 \bibliographystyle{IEEEtran}
