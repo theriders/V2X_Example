@@ -10,6 +10,8 @@
 // set to false if accelerometer is not present
 #define hasAccel true
 
+#define wifiAP
+
 #ifdef hasAccel
 #include <Adafruit_LSM9DS1.h>
 #endif
@@ -142,6 +144,12 @@ void setup() {
   pinMode(cautionLED, OUTPUT);
   pinMode(receivingLED, OUTPUT);
 
+  #ifdef wifiAP
+  WiFi.mode(WIFI_AP);
+  WiFi.softAP(SSID,PASSWORD);
+  #endif
+
+  #ifndef wifiAP
   WiFi.begin(SSID, PASSWORD);
     if (WiFi.waitForConnectResult() != WL_CONNECTED) {
         Serial.println("WiFi Failed");
@@ -149,6 +157,7 @@ void setup() {
             delay(1000);
         }
     }
+  #endif
 
   Serial.println("Wifi Okay");
 
