@@ -8,7 +8,7 @@
 #include <secrets.h>
 
 // set to false if accelerometer is not present
-#define hasAccel true
+#define hasAccel false
 
 #ifdef hasAccel
 #include <Adafruit_LSM9DS1.h>
@@ -39,7 +39,7 @@ struct communicatingCar {
 struct packetInfo {
   String carID;
   unsigned int tofData;
-  unsigned int accelData;
+  signed int accelData;
   int statusMessage; // 0 normal, 1 caution
 };
 
@@ -255,6 +255,10 @@ void loop() {
     tempPacket->accelData = data[1];
     Serial.print("Accel Sending: ");
     Serial.print(String((signed)tempPacket->accelData));
+  }
+  else
+  {
+    tempPacket->accelData = 0;
   }
   
   tempPacket->tofData = (int) distance.RangeMilliMeter;
