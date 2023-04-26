@@ -1,2 +1,3 @@
 /.DS_Store
 .vscode_old
+include/secrets.h

@@ -8,7 +8,7 @@
 #include <secrets.h>
 
 // set to false if accelerometer is not present
-#define hasAccel false
+#define hasAccel true
 
 #ifdef hasAccel
 #include <Adafruit_LSM9DS1.h>
@@ -26,6 +26,7 @@ const byte echoSonarPin = 13;
 const byte warningLED = 26;
 const byte cautionLED = 27;
 const byte receivingLED = 2;
+bool first_time = 1;
 String myID;
 
 //tuple for local array of network cars
@@ -34,17 +35,18 @@ struct communicatingCar {
   String carID;
 };
 
-//packet contancts
+//packet contents
 struct packetInfo {
   String carID;
   unsigned int tofData;
-  unsigned int accelData;
-  unsigned int statusMessage; 
+  int accelData;
+  int statusMessage; // 0 normal, 1 caution
 };
 
 //we only have 2 devices right now so 3 max should be fine
 struct communicatingCar cars[3];
 struct packetInfo* tempPacket;
+struct packetInfo recvTempPacket;
 
 //timers and booleans
 volatile unsigned long currentTime;
@@ -110,6 +112,8 @@ void readSensor(int * data)
 void setup() {
   Serial.begin(115200);
 
+  tempPacket = (packetInfo*) malloc(sizeof(struct packetInfo));
+  //recvTempPacket[1]]
   //need to call millis once to initialize for some reason
   sendTimer = millis();
 
@@ -129,6 +133,7 @@ void setup() {
     }
 
      setupSensor();
+     Serial.println("LSM9DS1 Setup okay");
   }
   
   // power 
@@ -145,30 +150,68 @@ void setup() {
         }
     }
 
-  myID = WiFi.macAddress().substring(15);
+  Serial.println("Wifi Okay");
+
+  //myID = WiFi.macAddress().substring(15);
+  myID = "0";
+
+  Serial.println("Wifi2 Okay");
+
+
   tempPacket->carID = myID;
+
+  Serial.println("carID Okay");
+
 
   if(udp.listen(10000)) {
         udp.onPacket([](AsyncUDPPacket packet) {
             // turn on the LED once and leave on
             // this is the onboard led (next to power)
+            Serial.println("Before DigitalWrite");
             digitalWrite(receivingLED, HIGH);
 
             Serial.print("Data: ");
-            Serial.write(packet.data(), packet.length());
-            Serial.print("\n");
-            
-            //status msg logic
-            //ADD HERE (collect car ID and time received in an array)
+            //Serial.write(packet.data(), packet.length());
+            //Serial.print("\n");
 
-            //CAUTION msg
-            if(strcmp((char*)packet.data(),"CAUTION") == 0)
+            // convert UDP buffer back into struct
+            //char buffer[sizeof(struct packetInfo)];
+            
+            //struct packetInfo* rcv = (packetInfo *) malloc(sizeof(struct packetInfo));
+            //memcpy(&rcv, packet.data(), sizeof(rcv));
+            //uint8_t *buffer = (uint8_t *) packet.data();
+            /*
+            recvTempPacket = (packetInfo *) malloc(sizeof(struct packetInfo));
+            */
+            //memcpy(&recvTempPacket,buffer,sizeof(struct packetInfo));
+            memcpy(&recvTempPacket,packet.data(),sizeof(struct packetInfo));
+            Serial.print(String(recvTempPacket.statusMessage));
+            Serial.print(" : ");
+            Serial.print(String(recvTempPacket.tofData));
+            Serial.print(" : ");
+            Serial.println(recvTempPacket.accelData,16);
+            Serial.print("\n");
+
+            /*
+            // if CAUTION is received
+            if (rcv->statusMessage == 1)
             {
-              //Serial.print("CAUTION");
               digitalWrite(cautionLED, HIGH);
               cautionTimer = millis();
               caution_led_enabled = true;
             }
+            */
+            //status msg logic
+            //ADD HERE (collect car ID and time received in an array)
+
+            //CAUTION msg
+            // if(strcmp((char*)packet.data(),"CAUTION") == 0)
+            // {
+            //   //Serial.print("CAUTION");
+            //   digitalWrite(cautionLED, HIGH);
+            //   cautionTimer = millis();
+            //   caution_led_enabled = true;
+            // }
 
         });
     }
@@ -177,7 +220,11 @@ void setup() {
 
 
 void loop() {
-
+  if (first_time) {
+    first_time = 0;
+    Serial.println("I am in the loop");
+  }
+  
   //IF millis() works we can remove this delay
   delay(200);
   
@@ -208,6 +255,8 @@ void loop() {
     int data[3];
     readSensor(data);
     tempPacket->accelData = data[1];
+    Serial.print("Accel Sending: ");
+    Serial.println(tempPacket->accelData, 16);
   }
   
   tempPacket->tofData = (int) distance.RangeMilliMeter;
@@ -219,14 +268,14 @@ void loop() {
     tempPacket->statusMessage = 1;
   }
 
-
   //status msg (send all the data)
-  if(currentTime > (sendTimer + ((unsigned long) 3000)))
+  if(currentTime > (sendTimer + ((unsigned long) 10000)))
   {
+    Serial.println("I am sending data");
     // convert struct into buffer to send over UDP
-    char buffer[sizeof(struct packetInfo)];
-    memcpy(buffer, &tempPacket, sizeof(tempPacket));
-    udp.broadcastTo(buffer,10000);
+    //uint8_t buffer[sizeof(struct packetInfo)];
+    //memcpy(buffer, tempPacket, sizeof(struct packetInfo));
+    udp.broadcastTo((uint8_t *)tempPacket,sizeof(struct packetInfo),10000);
 
     sendTimer = millis();
   }
