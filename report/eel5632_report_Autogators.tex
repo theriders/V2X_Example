@@ -59,8 +59,10 @@ todo@ufl.edu
 \begin{abstract}
 Vehicle-to-vehicle (V2V) allows communication between vehicles, promoting driver
 awareness and potentially reducing the number of collisions. Existing V2V
-implementations (cellular V2X, C-V2X) rely on cloud data, whereas the
-implementation shown in this paper does true V2V between vehicles.
+implementations (cellular vehicle-to-everything, C-V2X) rely on cloud data, whereas the
+implementation shown in this paper does true V2V between vehicles. A mockup
+utilizing two ESP32 with a time-of-flight (ToF) sensor and accelerometer
+communicate using UDP to illustrate V2V.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -68,17 +70,22 @@ V2V, vehicles, driver, awareness, C, ESP32, UDP
 \end{IEEEkeywords}
 
 \section{Introduction}
-Various process flows are used by the electronics industry to fabricate
-transistors. One of the available nodes for manufacturing FinFET transistors is
-the 14 nm process node. This process will be outlined and explained.
-Renders from Conventor's SEMulator3D software will be used to illustrate
-various steps from the process flow.
+As society moves towards utilizing more autonomous driving systems, vehicles can
+act as a network to promote efficient and safe driving. This network is referred
+to as vehicle-to-vehicle (V2V). Automotive vehicles should communicate with each
+other through V2V to increase driver awareness and reduce the number of collisions.
 
-The four main steps in 14 nm FinFET manufacturing are wafer setup,
-front-end-of-line (FEOL), middle-of-line (MOL), and extract devices according to
-Conventor's SEMulator3D. Wafer setup is where the manufacture gets the silicon
-ready, FEOL makes the FinFET,  MOL connects to the FinFET, and extract devices
-is where the tool slices out the FinFET from the render.
+The current state of V2V is nonexistent. The closest thing on the market to V2V
+is the Safety Cloud for Chrysler Vehicles, which is implemented through a
+cellular network to create C-V2X (cellular vehicle-to-everything) \cite{cv2x}.
+While this is fairly close to V2V, passing through a cloud does not exhibit true
+V2V. Ideally the cars would communicate directly to each other, which is what is
+covered by the implementation discussed in this paper.
+
+V2V will be illustrated using an ESP32 paired with time-of-flight (ToF) sensor
+and accelerometer. Each ESP32 represents a simplified car, and communicate with
+each other using UDP. UDP was chosen as the protocol to allow ad hoc car networks
+to be formed as well as allow dropped packets once a car leaves the network.
 
 \section{Wafer Setup}
 
