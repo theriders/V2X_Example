@@ -8,7 +8,7 @@
 #include <secrets.h>
 
 // set to false if accelerometer is not present
-#define hasAccel true
+#define hasAccel false
 
 #ifdef hasAccel
 #include <Adafruit_LSM9DS1.h>
@@ -133,7 +133,7 @@ void setup() {
     }
 
      setupSensor();
-     Serial.println("LSM9DS1 Setup okay");
+     //Serial.println("LSM9DS1 Setup okay");
   }
   
   // power 
@@ -150,22 +150,22 @@ void setup() {
         }
     }
 
-  Serial.println("Wifi Okay");
+  //Serial.println("Wifi Okay");
 
-  //myID = WiFi.macAddress().substring(15);
-  myID = "0";
+  myID = WiFi.macAddress().substring(15);
+  //myID = "0";
 
-  Serial.println("Wifi2 Okay");
+  //Serial.println("Wifi2 Okay");
 
   tempPacket->carID = myID;
 
-  Serial.println("carID Okay");
+  //Serial.println("carID Okay");
 
   if(udp.listen(10000)) {
         udp.onPacket([](AsyncUDPPacket packet) {
             // turn on the LED once and leave on
             // this is the onboard led (next to power)
-            Serial.println("Before DigitalWrite");
+            //Serial.println("Before DigitalWrite");
             digitalWrite(receivingLED, HIGH);
 
             Serial.print("Data: ");
@@ -197,6 +197,13 @@ void setup() {
               digitalWrite(cautionLED, HIGH);
               cautionTimer = millis();
               caution_led_enabled = true;
+            }
+
+            if (recvTempPacket.statusMessage == 2)
+            {
+              digitalWrite(warningLED, HIGH);
+              warningTimer = millis();
+              warning_led_enabled = true;
             }
             
             //status msg logic
@@ -248,6 +255,16 @@ void loop() {
     }
   }
 
+  if(warning_led_enabled)
+  {
+    currentTime = millis();
+    if (currentTime > (warningTimer + ((unsigned long)5000)))
+    {
+      digitalWrite(warningLED,LOW);
+      warning_led_enabled = false;
+    }
+  }
+
   if (hasAccel == true)
   {
     int data[3];
@@ -263,9 +280,13 @@ void loop() {
   
   tempPacket->tofData = (int) distance.RangeMilliMeter;
   
-  if (tempPacket->accelData < 0 && tempPacket->tofData < 50)
+  if (tempPacket->accelData < 0 && tempPacket->tofData < 100 && tempPacket->tofData >= 50)
   {
     tempPacket->statusMessage = 1;
+  }
+  else if (tempPacket->accelData < 0 && tempPacket->tofData < 50)
+  {
+    tempPacket->statusMessage = 2;
   }
 
   //status msg (send all the data)
