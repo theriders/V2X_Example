@@ -124,13 +124,47 @@ distance, and the accelerometer measurement. On the other vehicle, this
 information is used to alert the driver via some LEDs.
 
 \subsection{Hardware}
-The mockup can be found on Fig.~\ref{mockup}.
+The mockup can be found on Fig.~\ref{mockup}. Each breadboard has an ESP32, a
+power supply, a ToF sensor, and two LEDs. Each could have an accelerometer, but
+only one ``vehicle'' had an accelerometer during testing.
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=\linewidth]{pics/two_boards.jpg}}
 \caption{The mockup used to test V2V, ESP32s are ``vehicles''.}
 \label{mockup}
 \end{figure}
+
+Close-ups of each ``vehicle'' can be found in Fig.~\ref{vehicle_bp} and
+Fig.~\ref{vehicle_up}. The assembled ``vehicles'' can be found in
+Fig.~\ref{bp_outside} and Fig.~\ref{up_outside}. They are named ``vehicle'' B
+and U, respectively, from now on. B for battery pack and U for USB battery pack.
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=\linewidth]{pics/bp_internals.jpg}}
+\caption{One of the ``vehicles'', vehicle B, used to test our V2V implementation.}
+\label{vehicle_bp}
+\end{figure}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=\linewidth]{pics/up_internals.jpg}}
+\caption{Another ``vehicles'', vehicle U, used to test our V2V implementation.}
+\label{vehicle_up}
+\end{figure}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=\linewidth]{pics/bp_vehicle_outside.jpg}}
+\caption{Assembled ``vehicle'', vehicle B, in our testing environment.}
+\label{bp_outside}
+\end{figure}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=\linewidth]{pics/up_vehicle_outside.jpg}}
+\caption{Another assembled ``vehicle'', vehicle U, in our testing environment.}
+\label{up_outside}
+\end{figure}
+
+\paragraph{Hardware issues} We are also going to add a paragraph for hardware
+issues (reordering due to bad components, etc…) TODO
 
 The driver has two LEDs available in this implementation: a yellow communication
 LED, and a red ``caution'' LED. The yellow LED turns on when there is a nearby
