@@ -76,7 +76,7 @@ a base for V2V.
 \end{abstract}
 
 \begin{IEEEkeywords}
-V2V, vehicles, driver, awareness, C, ESP32, UDP
+V2V, vehicles, driver, awareness, C, ESP32, WiFi, UDP, UDP Broadcast
 \end{IEEEkeywords}
 
 \section{Introduction}
@@ -86,7 +86,7 @@ act as a network to promote efficient and safe driving. This network is referred
 to as vehicle-to-vehicle (V2V). Automotive vehicles should communicate with each
 other through V2V to increase driver awareness and reduce the number of
 collisions \cite{nhtsa_v2v}. A simple mockup of a V2V system should illustrate the
-safety increase from V2V communication.
+safety increase provided by V2V communication.
 
 \subsection{Background and Related Works}
 The current state of V2V is nonexistent. The closest thing on the market to V2V
@@ -109,11 +109,12 @@ band for V2V.
 
 V2V will be illustrated using an ESP32 paired with time-of-flight (ToF) sensor
 and accelerometer. Each ESP32 represents a simplified car, and communicate with
-each other using UDP. UDP was chosen as the protocol to allow ad-hoc car
-networks to be formed as well as allow dropped packets once a car leaves the
-network.
+each other using WiFi. UDP Broadcast was chosen as the communication protocol.
 
-TODO \cite{iihs_bsd}.
+In recent years, newer vehicles have been produced with various driver warning systems.
+One such driver warning system is lane departure warning. Lane departure warning has been
+observed to reduce single-vehicle, side-swipe, and head-on crash severity by 11 percent
+and the severity of crash injury by 21 percent \cite{iihs_bsd}. 
 
 \section{V2V implementation}
 This section covers our V2V implementation, the features and the mockup.
@@ -171,7 +172,7 @@ and U, respectively, from now on. B for battery pack and U for USB battery pack.
 \label{up_outside}
 \end{figure}
 
-The driver has two LEDs available in this implementation: a yellow communication (caution)
+The driver has two LEDs available in this implementation: a yellow ``caution''
 LED, and a red ``warning'' LED. The yellow LED turns on when there is a nearby vehicle
 (less than 100mm for this experiment) exchanging UDP packets with the driver's vehicle.
 The red LED turns on in cases where the driver should be more cautious. To simulate this,
@@ -263,7 +264,8 @@ be improved, two ``vehicles'' successfully communicated and alerted a driver
 of a possible hazard. Going forward, the protocol can be improved upon and 
 secured to reduce the risk of false messages from adversary cars. In addition, 
 a high-bandwidth band can be selected similar to the 5.9 GHz band previously
-set aside by the FCC for solely V2X communications. Doing so ensure
+set aside by the FCC for solely V2X communications. Doing so ensures quick
+short-range communication, with minimal band crowding.
 
 
 %\clearpage
