@@ -79,15 +79,14 @@ a base for V2V.
 V2V, vehicles, driver, awareness, C, ESP32, UDP
 \end{IEEEkeywords}
 
-\section{Problem Statment}
-
-\section{Introduction}
+\section{Problem Statement}
 As society moves towards utilizing more autonomous driving systems, vehicles can
 act as a network to promote efficient and safe driving. This network is referred
 to as vehicle-to-vehicle (V2V). Automotive vehicles should communicate with each
 other through V2V to increase driver awareness and reduce the number of
-collisions.
+collisions \cite{nhtsa_v2v}.
 
+\section{Introduction}
 The current state of V2V is nonexistent. The closest thing on the market to V2V
 is the 2023 Safety Cloud for Chrysler Vehicles, which is implemented through a
 cellular network to create C-V2X (cellular vehicle-to-everything)
@@ -114,7 +113,7 @@ network.
 
 \section{Background and Related Works}
 
-TODO
+TODO \cite{iihs_bsd}.
 
 \section{V2V implementation}
 This section covers our V2V implementation, the features and the mockup.
@@ -180,19 +179,30 @@ the red warning LED was turned on in the case that a caution message has been re
 the ToF sensor has measured a distance less than or equal to 50mm, and the accelerometer
 observes a negative acceleration.
 
+Two other lights, intended for debugging, were also incorporated into the design. The blue
+LED onboard the ESP32 was employed to indicate a successful boot and successful WiFi
+connection between the two ESP32s. The red LED oneboard the ESP32 was utilized to 
+monitor the power supply and to ensure the ESP32 was powered on.
+
 Throughout the project's development, several hardware issues were encountered.
 One of the issues was the original set of Time-of-Flight sensors not working.
 This delayed the project and prompted the need for new Time-of-Flight sensors.
 Fortunately, this issue was resolved quickly by ordering a new set. The new set
 did not work perfectly, but this was likely due to the quality of the components.
 There were intermittent disconnect issues or sporadic readings, but generally
-the sensors worked and fulfilled their role in this project.
-
-We are also going to add a paragraph for hardware issues (reordering due to bad
-components, etc…) TODO.
+the sensors worked and fulfilled their role in this project. Another issue encountered
+during testing was power supply issues. Originally, two mobile phone battery banks were
+to be used to power each ESP32, but the minimal current draw of the ESP32 caused one
+of the battery banks to switch off. This battery had to be substituted for a
+battery consisting of four AA batteries in series. This battery provided 6V, and the
+internal power regulator of the ESP32 was able to step the voltage down to the system's
+5V requirement.
 
 \section{Results}
-Lots of good stuff, yup yup.
+The two vehicles were able to be powered independently and in a portable nature.
+The platoon leader vehicle hosted a WIFI access point, which the subsequent vehicle
+connected to. ToF data, vehicle status, and accelerometer data was sent between each
+vehicle and proccessed accordingly.
 
 The two ``vehicles'' communicate over UDP with each other. See Fig.~\ref{term1}
 to see the ``vehicle'' sending a UDP packet, and Fig.~\ref{term2} to see the
@@ -244,13 +254,13 @@ perhaps some UDP misconfiguration could be leveraged to forward UDP packet
 contents to a CAN bus, or similar idea.
 
 \section{Conclusion}
-We successfully implement a V2V network using two ESP32 with ToF and
+In this experiment, a V2V network was created using two ESP32 with ToF and
 accelerometer as a proof-of-concept/base on which car manufacturers may be able
 to improve and develop on.
 
-While there are sections to improve, like the protocol and protocol security, we
-were able to get two ``vehicles'' communicating with each other and alerting the
-driver based on these communications.
+While the protocol and protocol security demonstrated in this experiment are to
+be improved, two ``vehicles'' successfully communicated and alerted a driver
+
 
 %\clearpage
 \bibliographystyle{IEEEtran}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.4.12)  29 APR 2023 14:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.4.12)  29 APR 2023 14:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -311,71 +311,101 @@ fonts/enc/dvips/base/8r.enc}
 <pics/two_boards.jpg, id=10, 934.42056pt x 508.94366pt>
 File: pics/two_boards.jpg Graphic file (type jpg)
 <use pics/two_boards.jpg>
-Package pdftex.def Info: pics/two_boards.jpg  used on input line 140.
+Package pdftex.def Info: pics/two_boards.jpg  used on input line 139.
 (pdftex.def)             Requested size: 252.0pt x 137.25354pt.
 <pics/bp_internals.jpg, id=11, 456.01352pt x 508.94366pt>
 File: pics/bp_internals.jpg Graphic file (type jpg)
 <use pics/bp_internals.jpg>
-Package pdftex.def Info: pics/bp_internals.jpg  used on input line 151.
+Package pdftex.def Info: pics/bp_internals.jpg  used on input line 150.
 (pdftex.def)             Requested size: 252.0pt x 281.2556pt.
 <pics/up_internals.jpg, id=12, 477.38916pt x 508.94366pt>
 File: pics/up_internals.jpg Graphic file (type jpg)
 <use pics/up_internals.jpg>
-Package pdftex.def Info: pics/up_internals.jpg  used on input line 157.
+Package pdftex.def Info: pics/up_internals.jpg  used on input line 156.
 (pdftex.def)             Requested size: 252.0pt x 268.6594pt.
 <pics/bp_vehicle.jpg, id=13, 427.51268pt x 508.94366pt>
 File: pics/bp_vehicle.jpg Graphic file (type jpg)
 <use pics/bp_vehicle.jpg>
-Package pdftex.def Info: pics/bp_vehicle.jpg  used on input line 163.
+Package pdftex.def Info: pics/bp_vehicle.jpg  used on input line 162.
 (pdftex.def)             Requested size: 252.0pt x 300.00235pt.
 <pics/bp_vehicle_outside.jpg, id=14, 511.99733pt x 508.94366pt>
 File: pics/bp_vehicle_outside.jpg Graphic file (type jpg)
 <use pics/bp_vehicle_outside.jpg>
-Package pdftex.def Info: pics/bp_vehicle_outside.jpg  used on input line 164.
+Package pdftex.def Info: pics/bp_vehicle_outside.jpg  used on input line 163.
 (pdftex.def)             Requested size: 252.0pt x 250.49509pt.
 <pics/up_vehicle_outside.jpg, id=15, 457.0314pt x 508.94366pt>
 File: pics/up_vehicle_outside.jpg Graphic file (type jpg)
 <use pics/up_vehicle_outside.jpg>
-Package pdftex.def Info: pics/up_vehicle_outside.jpg  used on input line 170.
+Package pdftex.def Info: pics/up_vehicle_outside.jpg  used on input line 169.
 (pdftex.def)             Requested size: 252.0pt x 280.62657pt.
-<pics/term1.png, id=16, 494.97421pt x 294.72609pt>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [2 <./pics/two_boards.jpg> <./pics/bp_internals.jpg> <./pics/up_internals.jpg>
+]
+<pics/term1.png, id=19, 494.97421pt x 294.72609pt>
 File: pics/term1.png Graphic file (type png)
 <use pics/term1.png>
-Package pdftex.def Info: pics/term1.png  used on input line 202.
+Package pdftex.def Info: pics/term1.png  used on input line 212.
 (pdftex.def)             Requested size: 252.0pt x 150.04749pt.
-<pics/term2.png, id=17, 500.24391pt x 194.60204pt>
+<pics/term2.png, id=20, 500.24391pt x 194.60204pt>
 File: pics/term2.png Graphic file (type png)
 <use pics/term2.png>
-Package pdftex.def Info: pics/term2.png  used on input line 208.
+Package pdftex.def Info: pics/term2.png  used on input line 218.
 (pdftex.def)             Requested size: 252.0pt x 98.03123pt.
- [2 <./pics/two_boards.jpg> <./pics/bp_internals.jpg> <./pics/up_internals.jpg>
-] [3 <./pics/bp_vehicle.jpg> <./pics/bp_vehicle_outside.jpg> <./pics/up_vehicle
-_outside.jpg> <./pics/term1.png> <./pics/term2.png>]
-(./eel5632_report_Autogators.bbl
-Underfull \hbox (badness 1360) in paragraph at lines 26--30
+ [3 <./pics/bp_vehicle.jpg> <./pics/bp_vehicle_outside.jpg> <./pics/up_vehicle_
+outside.jpg> <./pics/term1.png>] (./eel5632_report_Autogators.bbl
+Underfull \hbox (badness 4378) in paragraph at lines 26--29
+[]\OT1/ptm/m/n/8 ``Vehicle-to-vehicle com-mu-ni-ca-tion.'' [On-line]. Avail-abl
+e:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 26--29
+\OT1/ptm/m/n/8 https://www.nhtsa.gov/technology-innovation/vehicle-vehicle-
+ []
+
+
+Underfull \hbox (badness 1360) in paragraph at lines 32--36
 \OT1/ptm/m/n/8 ap-plied in-for-ma-tion v2x data,'' Mar 2023. [On-line].
  []
 
 
-Underfull \hbox (badness 5288) in paragraph at lines 26--30
+Underfull \hbox (badness 5288) in paragraph at lines 32--36
 \OT1/ptm/m/n/8 Avail-able: https://www.traffictechnologytoday.com/news/connecte
 d-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 26--30
+Underfull \hbox (badness 10000) in paragraph at lines 32--36
 \OT1/ptm/m/n/8 vehicles-infrastructure/haas-safety-cloud-to-be-enhanced-with-ap
 plied-
  []
 
 
-Underfull \hbox (badness 2653) in paragraph at lines 39--43
+Underfull \hbox (badness 2653) in paragraph at lines 45--49
 []\OT1/ptm/m/n/8 ``The vehicle-to-grid pi-lot project has been in-
  []
 
 
-Underfull \hbox (badness 6047) in paragraph at lines 39--43
+Underfull \hbox (badness 6047) in paragraph at lines 45--49
 \OT1/ptm/m/n/8 au-gu-rated at mi-rafiori,'' Sep 2020. [On-line].
+ []
+
+
+Underfull \hbox (badness 2582) in paragraph at lines 59--63
+[]\OT1/ptm/m/n/8 J. Young, ``Lane de-par-ture warn-ing, blind spot
+ []
+
+
+Underfull \hbox (badness 4353) in paragraph at lines 59--63
+\OT1/ptm/m/n/8 de-tec-tion help drivers avoid trou-ble.'' [On-line].
+ []
+
+
+Underfull \hbox (badness 1430) in paragraph at lines 59--63
+\OT1/ptm/m/n/8 Avail-able: https://www.iihs.org/news/detail/stay-within-the-lin
+es-lane-
  []
 
 )
@@ -390,22 +420,20 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[4
-
-] (./eel5632_report_Autogators.aux) ) 
+[4 <./pics/term2.png>] (./eel5632_report_Autogators.aux) ) 
 Here is how much of TeX's memory you used:
- 4223 strings out of 476025
- 66158 string characters out of 5796532
+ 4224 strings out of 476025
+ 66163 string characters out of 5796532
  1865388 words of memory out of 5000000
- 24650 multiletter control sequences out of 15000+600000
+ 24651 multiletter control sequences out of 15000+600000
  541654 words of font info for 80 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,8n,62p,244b,266s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texmf-dist/fonts/type1/urw/tim
-es/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/sh
-are/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/ty
-pe1/urw/times/utmri8a.pfb>
-Output written on eel5632_report_Autogators.pdf (4 pages, 581937 bytes).
+</usr/share/texmf-dis
+t/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times
+/utmbi8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/shar
+e/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on eel5632_report_Autogators.pdf (4 pages, 583033 bytes).
 PDF statistics:
  46 PDF objects out of 1000 (max. 8388607)
  23 compressed objects within 1 object stream

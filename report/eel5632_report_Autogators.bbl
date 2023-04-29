@@ -21,6 +21,12 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
+\bibitem{nhtsa_v2v}
+\BIBentryALTinterwordspacing
+``Vehicle-to-vehicle communication.'' [Online]. Available:
+  \url{https://www.nhtsa.gov/technology-innovation/vehicle-vehicle-communication}
+\BIBentrySTDinterwordspacing
+
 \bibitem{stone_2023}
 \BIBentryALTinterwordspacing
 T.~Stone, ``Haas safety cloud to be enhanced with applied information v2x
@@ -46,6 +52,13 @@ T.~Stone, ``Haas safety cloud to be enhanced with applied information v2x
 A.~J. Hawkins, ``The auto industry lost its spectrum fight with the fcc because
   v2v was always a fantasy,'' Aug 2022. [Online]. Available:
   \url{https://www.theverge.com/2022/8/12/23303191/car-v2v-fcc-spectrum-wifi-court-ruling}
+\BIBentrySTDinterwordspacing
+
+\bibitem{iihs_bsd}
+\BIBentryALTinterwordspacing
+J.~Young, ``Lane departure warning, blind spot detection help drivers avoid
+  trouble.'' [Online]. Available:
+  \url{https://www.iihs.org/news/detail/stay-within-the-lines-lane-departure-warning-blind-spot-detection-help-drivers-avoid-trouble}
 \BIBentrySTDinterwordspacing
 
 \end{thebibliography}
