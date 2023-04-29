@@ -119,14 +119,47 @@ drivers of connected vehicles.
 V2V will be illustrated using an ESP32 paired with time-of-flight (ToF) sensor
 and accelerometer. Each ESP32 represents a simplified car, and communicate with
 each other using WiFi. UDP Broadcast was chosen as the communication protocol. 
-UDP Broadcast sends a message to every vehicle listening within the network.
+UDP Broadcast sends a message to every vehicle listening on the network.
+
+\section{Security}
+The proposed implementation of V2V has room to improve. A V2V implementation usable on
+the market would need to address a few security concerns.
+
+\subsection{Packet Security}
+As our UDP packets are being broadcasted to everyone in the nearby vicinity, an
+attacker only needs to be located near the network to be considered a ``car''.
+This means that anyone could send fake messages or tamper with existing packets.
+This leaves room for improvement in terms of admitting ``cars'' on the network,
+and properly identifying nodes on the network as ``car'', ``adversary'', or
+``miscellaneuos'' nodes.
+
+Attackers on the network could potentially leverage this limitation to inhibit
+the flow of traffic by broadcasting that there is some blockade ahead (ToF
+sensor data shows car ahead, accelerometer data shows there is no/little
+movement). Attackers could also target individual vehicles with a similar idea.
+They could send false packets to make the victim vehicle think it has to brake
+suddenly, potentially crashing with vehicles behind them or causing them to
+brake too fast. If the victim is carrying a heavy load, such as a large trailer,
+braking too fast can compromise the stability of their vehicle and potentially
+swerve out of control or unlatch their trailer.
+
+\subsection{Network Security}
+A member of the ad-hoc network may be either callibrated to send too many
+packets or is an attacker. In a case where the packet traffic is too heavy, a
+denial of service attack (DoS) may occur. This should be addressed as well
+before V2V is accepted by car manufacturers.
+
+As the network is completely open to new ``cars'', attackers may be able to
+probe the network for more vulnerabilities than those discussed. For example,
+perhaps some UDP misconfiguration could be leveraged to forward UDP packet
+contents to a CAN bus, or similar idea.
 
 \section{V2V implementation}
 This section covers our V2V implementation, the features and the mockup.
 
 \subsection{Features}
-The two vehicles are represented by two ESP32s. Our implementation is scalable 
-to allow for more vehicles. They each have a ToF sensor and
+The two vehicles are represented by two ESP32s. Although we only implemente two vehicles,
+our implementation is scalable to allow for more vehicles. They each have a ToF sensor and
 an accelerometer. The ToF sensor is used to identify whether there is another
 ``vehicle'' in front of the ESP32 and the accelerometer is used to know whether
 the other ``vehicle'' is moving. On a real vehicle, the CAN bus can be used to
@@ -191,9 +224,11 @@ LED onboard the ESP32 was employed to indicate a successful boot and successful 
 connection between the two ESP32s. The red LED oneboard the ESP32 was utilized to 
 monitor the power supply and to ensure the ESP32 was powered on.
 
+The ESP32s listen and broadcast messages on UDP port 10000.
+
 Throughout the project's development, several hardware issues were encountered.
-One of the issues was the original set of Time-of-Flight sensors not working.
-This delayed the project and prompted the need for new Time-of-Flight sensors.
+One of the issues was the original set of ToF sensors not working.
+This delayed the project and prompted the need for new ToF sensors.
 Fortunately, this issue was resolved quickly by ordering a new set. The new set
 did not work perfectly, but this was likely due to the quality of the components.
 There were intermittent disconnect issues or sporadic readings, but generally
@@ -229,39 +264,6 @@ https://github.com/theriders/V2X\_Example
 \caption{The other ``vehicle'' is receiving a message through UDP.}
 \label{term2}
 \end{figure}
-
-\section{Security}
-Our implementation of V2V has room to improve. A V2V implementation usable on
-the market would address a few security concerns.
-
-\subsection{Packet Security}
-As our UDP packets are being broadcasted to everyone in the nearby vecinity, an
-attacker only needs to be located near the network to be considered a ``car''.
-This means that anyone could send fake messages or tamper with existing packets.
-This leaves room for improvement in terms of admitting ``cars'' on the network,
-and properly identifying nodes on the network as ``car'', ``adversary'', or
-``miscellaneuos'' nodes.
-
-Attackers on the network could potentially leverage this limitation to inhibit
-the flow of traffic by broadcasting that there is some blockade ahead (ToF
-sensor data shows car ahead, accelerometer data shows there is no/little
-movement). Attackers could also target individual vehicles with a similar idea.
-They could send false packets to make the victim vehicle think it has to brake
-suddenly, potentially crashing with vehicles behind them or causing them to
-brake too fast. If the victim is carrying a heavy load, such as a large trailer,
-braking too fast can compromise the stability of their vehicle and potentially
-swerve out of control or unlatch their trailer.
-
-\subsection{Network Security}
-A member of the ad-hoc network may be either callibrated to send too many
-packets or is an attacker. In a case where the packet traffic is too heavy, a
-denial of service attack (DoS) may occur. This should be addressed as well
-before V2V is accepted by car manufacturers.
-
-As the network is completely open to new ``cars'', attackers may be able to
-probe the network for more vulnerabilities than those discussed. For example,
-perhaps some UDP misconfiguration could be leveraged to forward UDP packet
-contents to a CAN bus, or similar idea.
 
 \section{Conclusion}
 In this experiment, a V2V network was created using two ESP32 with ToF and
