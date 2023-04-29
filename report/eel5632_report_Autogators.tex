@@ -109,18 +109,24 @@ band for V2V.
 
 V2V will be illustrated using an ESP32 paired with time-of-flight (ToF) sensor
 and accelerometer. Each ESP32 represents a simplified car, and communicate with
-each other using WiFi. UDP Broadcast was chosen as the communication protocol.
+each other using WiFi. UDP Broadcast was chosen as the communication protocol. 
+UDP Broadcast sends a message to every vehicle listening within the network.
 
 In recent years, newer vehicles have been produced with various driver warning systems.
 One such driver warning system is lane departure warning. Lane departure warning has been
 observed to reduce single-vehicle, side-swipe, and head-on crash severity by 11 percent
-and the severity of crash injury by 21 percent \cite{iihs_bsd}. 
+and the severity of crash injury by 21 percent \cite{iihs_bsd}. Lane departure warning
+systems solely alert a driver of a single nearby obstacle on each side of their car.
+V2V, on the other hand, provides the possibility to reduce common vehicular crashes by
+communicating warnings and the presence of more than two vehicles or obstacles to the
+drivers of connected vehicles.
 
 \section{V2V implementation}
 This section covers our V2V implementation, the features and the mockup.
 
 \subsection{Features}
-The two vehicles are represented by two ESP32s. They each have a ToF sensor and
+The two vehicles are represented by two ESP32s. Our implementation is scalable 
+to allow for more vehicles. They each have a ToF sensor and
 an accelerometer. The ToF sensor is used to identify whether there is another
 ``vehicle'' in front of the ESP32 and the accelerometer is used to know whether
 the other ``vehicle'' is moving. On a real vehicle, the CAN bus can be used to
@@ -208,6 +214,9 @@ vehicle and proccessed accordingly.
 The two ``vehicles'' communicate over UDP with each other. See Fig.~\ref{term1}
 to see the ``vehicle'' sending a UDP packet, and Fig.~\ref{term2} to see the
 other ``vehicle'' receive the UDP packet.
+
+The code for this experiment can be found on Github:
+https://github.com/theriders/V2X\_Example
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=\linewidth]{pics/term1.png}}
