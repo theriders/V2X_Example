@@ -76,7 +76,7 @@ a base for V2V.
 \end{abstract}
 
 \begin{IEEEkeywords}
-V2V, vehicles, driver, awareness, C, ESP32, WiFi, UDP, UDP Broadcast
+V2V, vehicles, driver, awareness, C, ESP32, Wi-Fi, UDP, UDP Broadcast
 \end{IEEEkeywords}
 
 \section{Introduction}
@@ -100,16 +100,16 @@ paper. Additionally, Stellantis announced vehicle-to-grid (V2G) testing in 2019
 
 In 1999, the FCC designated a 75 MHz spectrum in the 5.9 GHz band for dedicated
 short-range communications (DSRC) \cite{hawkins_2022}. Unfortunately, this band was
-reallocated in 2020 for unlicensed WiFi \cite{hawkins_2022} use due to the
+reallocated in 2020 for unlicensed Wi-Fi \cite{hawkins_2022} use due to the
 failure of automobile makers to release V2X production cars. Due to the removal
-of this band, we chose UDP over WiFi as an acceptable simplified protocol for
+of this band, we chose UDP over Wi-Fi as an acceptable simplified protocol for
 V2V. Ideally, UDP would be replaced with another protocol built on top of UDP --
 or similar protocol -- specifically for V2V and operate on an FCC-designated
 band for V2V.
 
 In recent years, newer vehicles have been produced with various driver warning systems.
 One such driver warning system is lane departure warning. Lane departure warning has been
-observed to reduce single-vehicle, side-swipe, and head-on crash severity by 11 percent
+observed to reduce single-vehicle, sideswipe, and head-on crash severity by 11 percent
 and the severity of crash injury by 21 percent \cite{iihs_bsd}. Lane departure warning
 systems solely alert a driver of a single nearby obstacle on each side of their car.
 V2V, on the other hand, provides the possibility to reduce common vehicular crashes by
@@ -118,14 +118,14 @@ drivers of connected vehicles.
 
 V2V will be illustrated using an ESP32 paired with time-of-flight (ToF) sensor
 and accelerometer. Each ESP32 represents a simplified car, and communicate with
-each other using WiFi. UDP Broadcast was chosen as the communication protocol. 
+each other using Wi-Fi. UDP Broadcast was chosen as the communication protocol. 
 UDP Broadcast sends a message to every vehicle listening on the network.
 
 \section{Security}
 The proposed implementation of V2V has room to improve. A V2V implementation usable on
 the market would need to address a few security concerns. Security concerns are
 outside the scope of the project as we are addressing the lack of
-implementations covering V2V, but they are still worth mentioning
+implementations covering V2V, but they are still worth mentioning.
 
 \subsection{Packet Security}
 As our UDP packets are being broadcasted to everyone in the nearby vicinity, an
@@ -133,7 +133,7 @@ attacker only needs to be located near the network to be considered a ``car''.
 This means that anyone could send fake messages or tamper with existing packets.
 This leaves room for improvement in terms of admitting ``cars'' on the network,
 and properly identifying nodes on the network as ``car'', ``adversary'', or
-``miscellaneuos'' nodes.
+``miscellaneous'' nodes.
 
 Attackers on the network could potentially leverage this limitation to inhibit
 the flow of traffic by broadcasting that there is some blockade ahead (ToF
@@ -146,7 +146,7 @@ braking too fast can compromise the stability of their vehicle and potentially
 swerve out of control or unlatch their trailer.
 
 \subsection{Network Security}
-A member of the ad-hoc network may be either callibrated to send too many
+A member of the ad-hoc network may be either calibrated to send too many
 packets or is an attacker. In a case where the packet traffic is too heavy, a
 denial of service attack (DoS) may occur. This should be addressed as well
 before V2V is accepted by car manufacturers.
@@ -168,7 +168,7 @@ accelerometer. The ToF sensor is used to identify whether there is another
 the other ``vehicle'' is moving. On a real vehicle, the CAN bus can be used to
 monitor and send each vehicle's velocity -- and other information as needed,
 such as GPS for locating where the incoming UDP packet is coming from -- in the
-UDP packet. The ESP32s listen and broadcast messages on UDP port 10000.  The
+UDP packet. The ESP32s listen and broadcast messages on UDP port 10000. The
 current UDP packet we are sending has an ID for the vehicle, the ToF distance,
 and the accelerometer measurement. On the other vehicle, this information is
 used to alert the driver via some LEDs. This UDP packet was standardized between
@@ -176,7 +176,7 @@ vehicles using a defined C struct to contain the relevant information.
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=\linewidth]{pics/vehicle_image.png}}
-\caption{Hardware overview}
+\caption{Hardware overview.}
 \label{vehicle_image}
 \end{figure}
 
@@ -223,14 +223,14 @@ and U, respectively, from now on. B for battery pack and U for USB battery pack.
 
 The driver has two LEDs available in this implementation: a yellow ``caution''
 LED, and a red ``warning'' LED. The yellow LED turns on when there is a nearby vehicle
-(less than 100mm for this experiment) exchanging UDP packets with the driver's vehicle.
+(less than 100 mm for this experiment) exchanging UDP packets with the driver's vehicle.
 The red LED turns on in cases where the driver should be more cautious. To simulate this,
-the red warning LED was turned on in the case that a caution message has been recieved and 
-the ToF sensor has measured a distance less than or equal to 50mm.
+the red warning LED was turned on in the case that a caution message has been received and 
+the ToF sensor has measured a distance less than or equal to 50 mm.
 
 Two other lights, intended for debugging, were also incorporated into the design. The blue
-LED onboard the ESP32 was employed to indicate a successful boot and successful WiFi
-connection between the two ESP32s. The red LED oneboard the ESP32 was utilized to 
+LED onboard the ESP32 was employed to indicate a successful boot and successful Wi-Fi
+connection between the two ESP32s. The red LED onboard the ESP32 was utilized to 
 monitor the power supply and to ensure the ESP32 was powered on.
 
 Throughout the project's development, several hardware issues were encountered.
@@ -248,17 +248,20 @@ internal power regulator of the ESP32 was able to step the voltage down to the s
 5V requirement.
 
 \section{Results}
-The two vehicles were able to be powered independently and in a portable nature.
-The platoon leader vehicle hosted a WiFi access point, which the subsequent vehicle
+The two vehicles were powered independently and in a portable nature.
+The platoon leader vehicle hosted a Wi-Fi access point, which the subsequent vehicle
 connected to. ToF data, vehicle status, and accelerometer data was sent between each
-vehicle and proccessed accordingly.
+vehicle and processed accordingly.
 
 The two ``vehicles'' communicate over UDP with each other. See Fig.~\ref{term1}
 to see the ``vehicle'' sending a UDP packet, and Fig.~\ref{term2} to see the
 other ``vehicle'' receive the UDP packet.
 
-The code for this experiment can be found on Github:
+The code for this experiment can be found on GitHub:
 https://github.com/theriders/V2X\_Example
+
+A video demonstration of the experiment can be found on YouTube:
+https://www.youtube.com/watch?v=WW2k5TiuaQA
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=\linewidth]{pics/term1.png}}
