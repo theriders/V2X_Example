@@ -158,14 +158,15 @@ contents to a CAN bus, or similar idea.
 This section covers our V2V implementation, the features and the mockup.
 
 \subsection{Features}
-The two vehicles are represented by two ESP32s. Although we only implemente two vehicles,
-our implementation is scalable to allow for more vehicles. They each have a ToF sensor and
+The two vehicles are represented by two ESP32s. Although we only implemented two vehicles,
+our implementation is scalable to allow for more vehicles. Each vehicle possessed a ToF sensor and
 an accelerometer. The ToF sensor is used to identify whether there is another
 ``vehicle'' in front of the ESP32 and the accelerometer is used to know whether
 the other ``vehicle'' is moving. On a real vehicle, the CAN bus can be used to
 monitor and send each vehicle's velocity -- and other information as needed,
 such as GPS for locating where the incoming UDP packet is coming from -- in the
-UDP packet. The current UDP packet we are sending has an ID for the vehicle, the
+UDP packet. The ESP32s listen and broadcast messages on UDP port 10000. 
+The current UDP packet we are sending has an ID for the vehicle, the
 ToF distance, and the accelerometer measurement. On the other vehicle, this
 information is used to alert the driver via some LEDs. This UDP packet was standardized
 between vehicles using a defined C struct to contain the relevant information.
@@ -215,16 +216,13 @@ The driver has two LEDs available in this implementation: a yellow ``caution''
 LED, and a red ``warning'' LED. The yellow LED turns on when there is a nearby vehicle
 (less than 100mm for this experiment) exchanging UDP packets with the driver's vehicle.
 The red LED turns on in cases where the driver should be more cautious. To simulate this,
-the red warning LED was turned on in the case that a caution message has been recieved, 
-the ToF sensor has measured a distance less than or equal to 50mm, and the accelerometer
-observes a negative acceleration.
+the red warning LED was turned on in the case that a caution message has been recieved and 
+the ToF sensor has measured a distance less than or equal to 50mm.
 
 Two other lights, intended for debugging, were also incorporated into the design. The blue
 LED onboard the ESP32 was employed to indicate a successful boot and successful WiFi
 connection between the two ESP32s. The red LED oneboard the ESP32 was utilized to 
 monitor the power supply and to ensure the ESP32 was powered on.
-
-The ESP32s listen and broadcast messages on UDP port 10000.
 
 Throughout the project's development, several hardware issues were encountered.
 One of the issues was the original set of ToF sensors not working.
