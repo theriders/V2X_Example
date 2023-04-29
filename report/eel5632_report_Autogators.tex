@@ -79,6 +79,8 @@ a base for V2V.
 V2V, vehicles, driver, awareness, C, ESP32, UDP
 \end{IEEEkeywords}
 
+\section{Problem Statment}
+
 \section{Introduction}
 As society moves towards utilizing more autonomous driving systems, vehicles can
 act as a network to promote efficient and safe driving. This network is referred
@@ -110,6 +112,10 @@ each other using UDP. UDP was chosen as the protocol to allow ad-hoc car
 networks to be formed as well as allow dropped packets once a car leaves the
 network.
 
+\section{Background and Related Works}
+
+TODO
+
 \section{V2V implementation}
 This section covers our V2V implementation, the features and the mockup.
 
@@ -122,7 +128,8 @@ monitor and send each vehicle's velocity -- and other information as needed,
 such as GPS for locating where the incoming UDP packet is coming from -- in the
 UDP packet. The current UDP packet we are sending has an ID for the vehicle, the
 ToF distance, and the accelerometer measurement. On the other vehicle, this
-information is used to alert the driver via some LEDs.
+information is used to alert the driver via some LEDs. This UDP packet was standardized
+between vehicles using a defined C struct to contain the relevant information.
 
 \subsection{Hardware}
 The mockup can be found on Fig.~\ref{mockup}. Each breadboard has an ESP32, a
@@ -165,16 +172,43 @@ and U, respectively, from now on. B for battery pack and U for USB battery pack.
 \label{up_outside}
 \end{figure}
 
-The driver has two LEDs available in this implementation: a yellow communication
-LED, and a red ``caution'' LED. The yellow LED turns on when there is a nearby
-vehicle exchanging UDP packets with the driver's vehicle. The red LED turns on
-in cases where the driver should be more cautious, like when TODO.
+The driver has two LEDs available in this implementation: a yellow communication (caution)
+LED, and a red ``warning'' LED. The yellow LED turns on when there is a nearby vehicle
+(less than 100mm for this experiment) exchanging UDP packets with the driver's vehicle.
+The red LED turns on in cases where the driver should be more cautious. To simulate this,
+the red warning LED was turned on in the case that a caution message has been recieved, 
+the ToF sensor has measured a distance less than or equal to 50mm, and the accelerometer
+observes a negative acceleration.
+
+Throughout the project's development, several hardware issues were encountered.
+One of the issues was the original set of Time-of-Flight sensors not working.
+This delayed the project and prompted the need for new Time-of-Flight sensors.
+Fortunately, this issue was resolved quickly by ordering a new set. The new set
+did not work perfectly, but this was likely due to the quality of the components.
+There were intermittent disconnect issues or sporadic readings, but generally
+the sensors worked and fulfilled their role in this project.
 
 We are also going to add a paragraph for hardware issues (reordering due to bad
 components, etc…) TODO.
 
 \section{Results}
 Lots of good stuff, yup yup.
+
+The two ``vehicles'' communicate over UDP with each other. See Fig.~\ref{term1}
+to see the ``vehicle'' sending a UDP packet, and Fig.~\ref{term2} to see the
+other ``vehicle'' receive the UDP packet.
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=\linewidth]{pics/term1.png}}
+\caption{One ``vehicle'' is sending a message through UDP.}
+\label{term1}
+\end{figure}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=\linewidth]{pics/term2.png}}
+\caption{The other ``vehicle'' is receiving a message through UDP.}
+\label{term2}
+\end{figure}
 
 \section{Security}
 Our implementation of V2V has room to improve. A V2V implementation usable on

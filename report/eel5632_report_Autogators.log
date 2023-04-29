@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.4.12)  26 APR 2023 18:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.4.12)  29 APR 2023 14:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -303,44 +303,55 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 (/usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
-))
-<pics/two_boards.jpg, id=1, 934.42056pt x 508.94366pt>
-File: pics/two_boards.jpg Graphic file (type jpg)
-<use pics/two_boards.jpg>
-Package pdftex.def Info: pics/two_boards.jpg  used on input line 133.
-(pdftex.def)             Requested size: 252.0pt x 137.25354pt.
-<pics/bp_internals.jpg, id=2, 456.01352pt x 508.94366pt>
-File: pics/bp_internals.jpg Graphic file (type jpg)
-<use pics/bp_internals.jpg>
-Package pdftex.def Info: pics/bp_internals.jpg  used on input line 144.
-(pdftex.def)             Requested size: 252.0pt x 281.2556pt.
- [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf-dist/fo
-nts/enc/dvips/base/8r.enc}
+)) [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf-dist/
+fonts/enc/dvips/base/8r.enc}
 
 
 ]
+<pics/two_boards.jpg, id=10, 934.42056pt x 508.94366pt>
+File: pics/two_boards.jpg Graphic file (type jpg)
+<use pics/two_boards.jpg>
+Package pdftex.def Info: pics/two_boards.jpg  used on input line 140.
+(pdftex.def)             Requested size: 252.0pt x 137.25354pt.
+<pics/bp_internals.jpg, id=11, 456.01352pt x 508.94366pt>
+File: pics/bp_internals.jpg Graphic file (type jpg)
+<use pics/bp_internals.jpg>
+Package pdftex.def Info: pics/bp_internals.jpg  used on input line 151.
+(pdftex.def)             Requested size: 252.0pt x 281.2556pt.
 <pics/up_internals.jpg, id=12, 477.38916pt x 508.94366pt>
 File: pics/up_internals.jpg Graphic file (type jpg)
 <use pics/up_internals.jpg>
-Package pdftex.def Info: pics/up_internals.jpg  used on input line 150.
+Package pdftex.def Info: pics/up_internals.jpg  used on input line 157.
 (pdftex.def)             Requested size: 252.0pt x 268.6594pt.
 <pics/bp_vehicle.jpg, id=13, 427.51268pt x 508.94366pt>
 File: pics/bp_vehicle.jpg Graphic file (type jpg)
 <use pics/bp_vehicle.jpg>
-Package pdftex.def Info: pics/bp_vehicle.jpg  used on input line 156.
+Package pdftex.def Info: pics/bp_vehicle.jpg  used on input line 163.
 (pdftex.def)             Requested size: 252.0pt x 300.00235pt.
 <pics/bp_vehicle_outside.jpg, id=14, 511.99733pt x 508.94366pt>
 File: pics/bp_vehicle_outside.jpg Graphic file (type jpg)
 <use pics/bp_vehicle_outside.jpg>
-Package pdftex.def Info: pics/bp_vehicle_outside.jpg  used on input line 157.
+Package pdftex.def Info: pics/bp_vehicle_outside.jpg  used on input line 164.
 (pdftex.def)             Requested size: 252.0pt x 250.49509pt.
 <pics/up_vehicle_outside.jpg, id=15, 457.0314pt x 508.94366pt>
 File: pics/up_vehicle_outside.jpg Graphic file (type jpg)
 <use pics/up_vehicle_outside.jpg>
-Package pdftex.def Info: pics/up_vehicle_outside.jpg  used on input line 163.
+Package pdftex.def Info: pics/up_vehicle_outside.jpg  used on input line 170.
 (pdftex.def)             Requested size: 252.0pt x 280.62657pt.
+<pics/term1.png, id=16, 494.97421pt x 294.72609pt>
+File: pics/term1.png Graphic file (type png)
+<use pics/term1.png>
+Package pdftex.def Info: pics/term1.png  used on input line 202.
+(pdftex.def)             Requested size: 252.0pt x 150.04749pt.
+<pics/term2.png, id=17, 500.24391pt x 194.60204pt>
+File: pics/term2.png Graphic file (type png)
+<use pics/term2.png>
+Package pdftex.def Info: pics/term2.png  used on input line 208.
+(pdftex.def)             Requested size: 252.0pt x 98.03123pt.
  [2 <./pics/two_boards.jpg> <./pics/bp_internals.jpg> <./pics/up_internals.jpg>
-] (./eel5632_report_Autogators.bbl
+] [3 <./pics/bp_vehicle.jpg> <./pics/bp_vehicle_outside.jpg> <./pics/up_vehicle
+_outside.jpg> <./pics/term1.png> <./pics/term2.png>]
+(./eel5632_report_Autogators.bbl
 Underfull \hbox (badness 1360) in paragraph at lines 26--30
 \OT1/ptm/m/n/8 ap-plied in-for-ma-tion v2x data,'' Mar 2023. [On-line].
  []
@@ -367,8 +378,7 @@ Underfull \hbox (badness 6047) in paragraph at lines 39--43
 \OT1/ptm/m/n/8 au-gu-rated at mi-rafiori,'' Sep 2020. [On-line].
  []
 
-[3 <./pics/bp_vehicle.jpg> <./pics/bp_vehicle_outside.jpg> <./pics/up_vehicle_o
-utside.jpg>])
+)
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -384,10 +394,10 @@ Before submitting the final camera ready copy, remember to:
 
 ] (./eel5632_report_Autogators.aux) ) 
 Here is how much of TeX's memory you used:
- 4206 strings out of 476025
- 65892 string characters out of 5796532
- 1866388 words of memory out of 5000000
- 24636 multiletter control sequences out of 15000+600000
+ 4223 strings out of 476025
+ 66158 string characters out of 5796532
+ 1865388 words of memory out of 5000000
+ 24650 multiletter control sequences out of 15000+600000
  541654 words of font info for 80 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,8n,62p,244b,266s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -395,10 +405,10 @@ Here is how much of TeX's memory you used:
 es/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/sh
 are/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/ty
 pe1/urw/times/utmri8a.pfb>
-Output written on eel5632_report_Autogators.pdf (4 pages, 519859 bytes).
+Output written on eel5632_report_Autogators.pdf (4 pages, 581937 bytes).
 PDF statistics:
- 44 PDF objects out of 1000 (max. 8388607)
+ 46 PDF objects out of 1000 (max. 8388607)
  23 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 31 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 41 words of extra memory for PDF output out of 10000 (max. 10000000)
 
