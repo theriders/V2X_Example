@@ -1,0 +1,17 @@
+Amorph
+Conventor
+FEOL
+FinCut
+FinFET
+LPCVD
+Mand
+MandODL
+MandRes
+MandSiARC
+MOL
+ODL
+PadNit
+PadOx
+RMG
+SiARC
+Xtal
